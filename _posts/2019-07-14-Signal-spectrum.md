@@ -10,47 +10,28 @@ Chắc chắn những người từng học về tín hiệu và hệ thống đ
 Bây giờ hãy dùng công cụ biến đổi Fourier rời rạc (Discrete Fourier Transform: DFT) của Matlab để giải quyết. (DFT trong Matlab là hàm fft()).
 
 Ok, hãy tạo một tín hiệu như đề bài đã cho
-```matlab
+~~~~matlab
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Fs = 500;             % Sampling frequency                    
-
 T = 1/Fs;             % Sampling period = 2 ms    
-
 L = 1500;             % Length of signal 3 seconds
-
 t = (0:L-1)*T;        % Time vector
-
 % generate signal with noise
-
 f1=100; f2=200;
-
 S = 0.7*sin(2*pi*f1*t) + sin(2*pi*f2*t);
-
 X = S + 2*randn(size(t));
-
 plot(100*t(1:50),X(1:50))
-
 title('Signal Corrupted with Zero-Mean Random Noise')
-
 xlabel('t (milliseconds)')
-
 ylabel('X(t)')
-
 % Take DFT of X
-
 Y=fft(X);
-
 plot(abs(Y))
-
 title('Biến đổi Fourier của x(t)')
-
 xlabel('Sample')
-
 ylabel('Magnitude')
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-```
+~~~~
 Đây là đồ thị
 
 
@@ -94,25 +75,15 @@ Chúng ta biết rằng DFT N-điểm là rời rạc hóa tần số của DTFT
 
 ```matlab
 %%%%%%%%%%%%%%%
-
 % Take DFT of X
-
 Y=T*fft(X); % Y tuan hoan voi chu ky 0 den $2\pi$
-
 Flength=L/2; % Do Y doi xung qua $\pi$ nen chi khao sat 1 nua 
-
 Yhalf=Y(1:Flength); 
-
 f=Fs/L*(1:Flength); % Fs/2 ung voi $\pi$
-
 plot(f, abs(Yhalf))
-
 title('Biến đổi Fourier của x(t)')
-
 xlabel('Tần số')
-
 ylabel('Magnitude')
-
 %%%%%%%%%%%%%%%
 ```
 Và đây là kết quả
