@@ -34,10 +34,15 @@ ylabel('Magnitude')
 ~~~~
 Đây là đồ thị
 
-![hinh1](/images/bai01/noisysinewave.png)
+<div class="imgcap">
+<img src ="/images/bai-01/noisysinewave.png" width = "500" align = "center">
+<div class="thecap"> Tín hiệu và nhiễu trong miền thời gian <br></div>
+</div>
+
+![hinh1](/images/bai-01/noisysinewave.png)
 Hình 1. Hình dạng tín hiệu trong miền thời gian
 
-![hinh2](/images/bai01/fftsinewave.png)
+![hinh2](/images/bai-01/fftsinewave.png)
 Hình 2. Biến đổi Fourier của tín hiệu
 
 Từ đồ thị của biến đổi DFT của tín hiệu (phổ biên độ) thấy rằng có 4 vạch phổ đối xứng nhau ở các vị trí mẫu khoảng gần 350, 550, 850 và 1250 chứ không phải là 2 vạch phổ tại hai tần số 100 Hz và 200 Hz như ta mong đợi. Lý do ở đây là chúng ta đã sử dụng biến đổi DFT chứ không phải là CFT, bây giờ hãy xét mối quan hệ giữa các biến đổi này với nhau, sau đó chúng ta sẽ điều chỉnh lại đoạn code Matlab ở trên để quan sát được đúng 2 vạch phổ tại vị trí 100 Hz và 200 Hz.
@@ -90,7 +95,7 @@ ylabel('Magnitude')
 ```
 Và đây là kết quả
 
-![hinh4](/images/bai01/sinespectra.png)
+![hinh4](/images/bai-01/sinespectra.png)
 Hình 4. Tần số tín hiệu tại vị trí 100 Hz và 200 Hz
 
 *Như vậy bài này đã giúp bạn quan sát được thành phần tần số một cách trực quan dựa vào biến đổi Fourier rời rạc. Đồng thời cũng trình bày một cách ngắn gọn mối quan hệ giữa biến đồi Fourier liên tục CFT, biến đổi Fourier thời gian rời rạc DTFT và biến đổi Fourirer rời rạc DFT. Mấu chốt của vấn đề là phải hiểu được mối quan hệ giữa tần số vật lý của tín hiệu $$F$$ và tần số của phép biến đổi, hay tần số chuẩn hóa $$\omega$$ và tính đối xứng của phổ đối với tín hiệu thực.*
