@@ -178,4 +178,4 @@ Referencing a bug by #bugID in your git commit links it to the slip. For example
 # Công thức toán
 Công thức toán ở đây gióng như LaTeX á, bắt đầu bằng dấu đô la cho công thức trong dòng $x^2+2x+1$, hoặc hai dấu đô la cho công thức tách dòng
 
-\\[\sum_{i=1}^{N}{x[n]e^{j\omega N}}\\]
+$$\sum_{i=1}^{N}{x[n]e^{j\omega N}}$$
