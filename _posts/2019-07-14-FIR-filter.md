@@ -26,16 +26,12 @@ $$h[n]=\frac{sin(n\omega _c)}{n\pi}$$
 Hình 1. Đáp ứng tần số và đáp ứng xung của bộ lọc thông thấp lý tưởng.
 
 Từ đồ thị ở Hình 1 có thể thấy đáp ứng xung của bộ lọc thông thấp lý tưởng là không nhân quả (khác 0 với những giá trị $$n$$ nhỏ hơn 0) và có chiều dài vô hạn, do đó không thể thực hiện được về mặt vật lý. Để hiện thực được bộ lọc thì chúng ta phải thay đổi một chút đối với đáp ứng xung:
-
 - Giới hạn lại chiều dài đáp ứng xung của bộ lọc, như chúng ta thấy trên hình vẽ các hệ số bộ lọc càng cao thì cảng nhỏ lại, do vậy chúng ta có thể coi đến một mức nào đó các hệ số đó triệt tiêu. Mức đó gọi là bậc của bộ lọc (order of filter).
-
 - Dịch đáp ứng xung của bộ lọc đi một số mẫu để nó không còn các hệ số khác 0 ở phần $$n$$ nhỏ hơn 0 nữa.
 
 Khi  thực hiện 2 việc này sẽ dẫn đến 2 vấn đề:
-
 - Giới hạn chiều dài đáp ứng xung làm cho đáp ứng tần số không còn dạng lý tưởng như hình trên nữa mà sẽ bị méo mó đi. Cụ thể là ở vùng dải thông và dải chắn không còn bằng phẳng mà có độ gợn sóng, biên độ giữa phần dải thông và dải chắn không thể thay đổi một cách đột ngột (từ 1 về 0) được mà phải có một sự chuyển tiếp dần dần. Việc giới hạn chiều dài đáp ứng xung giống như là nhân với đáp ứng xung với một cửa sổ có chiều dài hữu hạn - trong trường hợp này là cửa sổ hình chữ nhật có biên độ bằng 1. Hình dạng, kích thước của sổ sẽ ảnh hưởng đến các thông số (độ gợn sóng, thời gian chuyển tiếp) của bộ lọc. Đặc điểm của các loại cửa sổ sẽ đề cập đến ở phần sau của bài. Các đặc tả của bộ lọc thực tế được cho như ở Hình 2. Chính vì điều này nên giả thiết ở ví dụ bên trên là chưa đủ khi thiết kế bộ lọc thực tế, cần phải có những chỉ tiêu đặc tả bộ lọc như ở Hình 2 mới đủ để thiết kế, chúng ta sẽ quay lại điều này ở phần cuối của bài.
-
-- Dịch $$n_0$$ mẫu trong miền thời gian thì tương ứng trong miền tần số sẽ là $$h[n-n_0]  \overset{\mathcal{DTFT}}{\leftrightarrow} e^{-j\omega n_0}H(e^{j\omega})$$. Nghĩa là đã làm dịch pha đi $$n_0$$. Điều này dẫn đến ràng buộc là bộ lọc có pha tuyến tính (pha là hàm số bậc nhất của $$\omega$$). Quá trình dịch này không làm ảnh hưởng đến đáp ứng biên độ - tần số (magnitude response, tức là $$|H(e^{j\omega}|)$$, mà chỉ ảnh hưởng đến đáp ứng pha, cụ thể là độ trễ nhóm (group delay). Độ trễ nhóm đặc trưng cho độ trễ của tín hiệu có tần số khác nhau khi đi qua bộ lọc. Tuy nhiên trong phần lớn trường hợp thì ảnh hưởng của pha không quan trọng.
+- Dịch $$n_0$$ mẫu trong miền thời gian thì tương ứng trong miền tần số sẽ là $$h[n-n_0] \overset{\mathcal{DTFT}}{\leftrightarrow} e^{-j\omega n_0}H(e^{j\omega})$$. Nghĩa là đã làm dịch pha đi $$n_0$$. Điều này dẫn đến ràng buộc là bộ lọc có pha tuyến tính (pha là hàm số bậc nhất của $$\omega$$). Quá trình dịch này không làm ảnh hưởng đến đáp ứng biên độ - tần số (magnitude response, tức là $$|H(e^{j\omega}|)$$, mà chỉ ảnh hưởng đến đáp ứng pha, cụ thể là độ trễ nhóm (group delay). Độ trễ nhóm đặc trưng cho độ trễ của tín hiệu có tần số khác nhau khi đi qua bộ lọc. Tuy nhiên trong phần lớn trường hợp thì ảnh hưởng của pha không quan trọng.
 
 ![hinh2](/images/bai-02/thamsoboloc.png)  
 Hình 2. Các tham số của bộ lọc
