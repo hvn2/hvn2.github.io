@@ -2,7 +2,7 @@
 layout: default
 title: Thử vài tính năng của markdown
 ---
-
+Bài này hướng dẫn một số cú pháp và lệnh cơ bản làm việc với Markdown.
 # Headers: Bao nhiêu dấu # thì bấy nhiêu mức header
 # H1
 ## H2
@@ -71,17 +71,14 @@ Reference-style:
 
 # Code and Syntax Highlighting
 Chèn đoạn code trong 3 dấu gạch ngược (chỗ dẫu ~) trên đầu như này ```python (enter) code ở đây (enter) ```
-
 ```javascript
 var s = "JavaScript syntax highlighting";
 alert(s);
 ```
- 
 ```python
 s = "Python syntax highlighting"
 print s
 ```
- 
 ```
 No language indicated, so no syntax highlighting. 
 But let's throw in a <b>tag</b>.
@@ -183,5 +180,4 @@ Trước khi gõ được công thức toán học phải cài MathJax cho Jekyl
 </script>
 ```
 Công thức toán ở đây gióng như LaTeX á, sử dụng 2 cặp đô la cho công thức trong dòng $$x^2+2x+1$$, hoặc hai dấu đô la hoặc cặp \ [ cho công thức tách dòng
-
-\[ \sum_{i=1}^{N}{x[n]e^{j\omega N}}\]
+\[ \sum_{i=1}^{N}{x[n]e^{j\omega N}} \]
