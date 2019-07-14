@@ -36,7 +36,7 @@ Khi  thực hiện 2 việc này sẽ dẫn đến 2 vấn đề:
 ![hinh2](/images/bai-02/thamsoboloc.png)  
 Hình 2. Các tham số của bộ lọc
 
-Với những ràng buộc như trên thì bộ lọc của chúng ta cần thiết kế sẽ giới hạn lại là bộ lọc số có đáp ứng xung chiều dài hữu hạn và pha tuyến tính (bộ lọc FIR pha tuyến tính). Đáp ứng tần số của bộ lọc $$H(e^{j\omega})$$  nói chung là một số phức và nếu $$h[n]$$ là thực thì đáp ứng biên độ - tần số (Magnitude response) $$|H(e^{j\omega}|$$ là hàm chẵn, đáp ứng pha - tần số $$arg(H(e^{j\omega})$$ là một hàm lẻ. Đáp ứng tần số có thể biểu diễn dưới dạng độ lớn và pha (biểu diễn số phức dưới dạng tọa độ cực): $$H(e)^{j\omega}=A(e^{j\omega})e^{j\theta(\omega)}$$ với $$\theta(\omega)=\beta-\alpha \omega$$ là pha tuyến tính, $$A(e^{j\omega})$$ là một số thực có thể âm hoặc dương. Với bộ lọc FIR pha tuyến tính người ta chứng minh được có 4 loại :
+Với những ràng buộc như trên thì bộ lọc của chúng ta cần thiết kế sẽ giới hạn lại là bộ lọc số có đáp ứng xung chiều dài hữu hạn và pha tuyến tính (bộ lọc FIR pha tuyến tính). Đáp ứng tần số của bộ lọc $$H(e^{j\omega})$$ nói chung là một số phức và nếu $$h[n]$$ là thực thì đáp ứng biên độ - tần số (Magnitude response) $$|H(e^{j\omega}|$$ là hàm chẵn, đáp ứng pha - tần số $$arg(H(e^{j\omega})$$ là một hàm lẻ. Đáp ứng tần số có thể biểu diễn dưới dạng độ lớn và pha (biểu diễn số phức dưới dạng tọa độ cực): $$H(e)^{j\omega}=A(e^{j\omega})e^{j\theta(\omega)}$$ với $$\theta(\omega)=\beta-\alpha \omega$$ là pha tuyến tính, $$A(e^{j\omega})$$ là một số thực có thể âm hoặc dương. Với bộ lọc FIR pha tuyến tính người ta chứng minh được có 4 loại :
 
 - Loại 1: $$h[n]$$ đối xứng, N lẻ (N là chiều dài đáp ứng xung bộ lọc)
 - Loại 2: $$h[n]$$ đối xứng, N chẵn
