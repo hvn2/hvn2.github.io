@@ -40,7 +40,7 @@ Hình 2. Biến đổi Fourier của tín hiệu
 
 Từ đồ thị của biến đổi DFT của tín hiệu (phổ biên độ) thấy rằng có 4 vạch phổ đối xứng nhau ở các vị trí mẫu khoảng gần 350, 550, 850 và 1250 chứ không phải là 2 vạch phổ tại hai tần số 100 Hz và 200 Hz như ta mong đợi. Lý do ở đây là chúng ta đã sử dụng biến đổi DFT chứ không phải là CFT, bây giờ hãy xét mối quan hệ giữa các biến đổi này với nhau, sau đó chúng ta sẽ điều chỉnh lại đoạn code Matlab ở trên để quan sát được đúng 2 vạch phổ tại vị trí 100 Hz và 200 Hz.
 
-Vì trong máy tính không biểu diễn được tín hiệu liên tục, nên đầu tiên chúng ta xét quá trình chuyển đổi từ tương tự sang số, hay đơn giản hơn là chuyển đổi từ liên tục sang rời rạc. Quá trình chuyển đổi tương tự sang số bao gồm lấy mẫu, lượng tử hóa và mã hóa, trong đó quá trình lấy mẫu là quá trình rời rạc hóa về mặt thời gian, hay nói cách khác biến từ biến $t$ thành biến $n$. Trong miền thời gian, lấy mẫu là nhân tín hiệu liên tục với một xung lấy mẫu có chu kỳ $T_s$, giả sử quá trình lấy mẫu là lý tưởng (xung lấy mẫu là các xung lý tưởng). Gọi $x_s(t$$ là tín hiệu sau khi lấy mẫu. Ta có
+Vì trong máy tính không biểu diễn được tín hiệu liên tục, nên đầu tiên chúng ta xét quá trình chuyển đổi từ tương tự sang số, hay đơn giản hơn là chuyển đổi từ liên tục sang rời rạc. Quá trình chuyển đổi tương tự sang số bao gồm lấy mẫu, lượng tử hóa và mã hóa, trong đó quá trình lấy mẫu là quá trình rời rạc hóa về mặt thời gian, hay nói cách khác biến từ biến $t$ thành biến $n$. Trong miền thời gian, lấy mẫu là nhân tín hiệu liên tục với một xung lấy mẫu có chu kỳ $T_s$, giả sử quá trình lấy mẫu là lý tưởng (xung lấy mẫu là các xung lý tưởng). Gọi $x_s(t)$ là tín hiệu sau khi lấy mẫu. Ta có
 
 $$x_s(t) = x_c(t).s(nT_s)$$
 
@@ -53,7 +53,7 @@ Với $\Omega$ là tần số liên tục và $\Omega _s =2\pi F_s = 2\pi/T_s$ l
 ![hinh3](/images/bai-01/sampling.png)  
 Hình 3. Biến đổi CFT của tín hiệu liên tục và tín hiệu lấy mẫu
 
-Từ hình vẽ trên cũng suy ra được định lý lấy mẫu Nyquist nổi tiếng: Tần số lấy mẫu phải lớn hơn hoặc bằng 2 lần tần số lớn nhất của tín hiệu. Rõ ràng để khôi phục được tín hiệu tương tự từ các mẫu một cách chính xác nhất thì phổ lặp lại tại các tần số bằng số nguyên lần $\Omega_s$ không được xen lẫn vào nhau - như hình b, nếu không sẽ bị xen lẫn vào nhau và không khôi phục được - như hình c. Để thỏa mãn điều đó thì:
+Từ hình vẽ trên cũng suy ra được định lý lấy mẫu **Nyquist** nổi tiếng: Tần số lấy mẫu phải lớn hơn hoặc bằng 2 lần tần số lớn nhất của tín hiệu. Rõ ràng để khôi phục được tín hiệu tương tự từ các mẫu một cách chính xác nhất thì phổ lặp lại tại các tần số bằng số nguyên lần $\Omega_s$ không được xen lẫn vào nhau - như hình b, nếu không sẽ bị xen lẫn vào nhau và không khôi phục được - như hình c. Để thỏa mãn điều đó thì:
 
 $2\Omega_H \leqslant \Omega_s$
 
@@ -71,7 +71,7 @@ Công thức này cho thấy rằng $X(e^{j\omega})$ chính là $X_s(j\Omega)$ v
 
 Đến đây mọi việc đã tương đối sáng tỏ, chúng ta đã tìm ra mối liên hệ giữa tần số tín hiệu tương tự $F$ và tần số chuẩn hóa $\omega$. Trong Matlab chúng ta có 2 cách để tìm phổ của tín hiệu. Cách thứ nhất dựa vào lệnh ```freqz()``` để tìm đáp ứng tần số ($H(e^{j\omega})\overset{\mathcal{DFT}}{\leftrightarrow}h[n]$). Cách thứ 2 là tìm biến đổi DFT để tìm trực tiếp phổ của tín hiệu. Các bạn có thể thử cách thứ nhất. Ở đây chúng ta tiếp cận theo cách thứ 2.
 
-Chúng ta biết rằng DFT N-điểm là rời rạc hóa tần số của DTFT với $\omega = 2\pi/N$$ và DTFT tuần hoàn với chu kỳ $2\pi$ nên trong Matlab DTFT chỉ thể hiện trong 1 chu kỳ $(-\pi, \pi)$ (có thể dùng lệnh ```freqz()``` để kiểm tra). Do vậy, DFT cũng tuần hoàn với chu kỳ $2\pi$, trong Matlab thể hiện  trong 1 chu kỳ $(0,2\pi)$ (có dùng lệnh ```fft()``` để kiểm tra) với phần từ $\pi$ đến $2\pi$ tương ứng với phần $-\pi$ đến 0 của DTFT. Hơn nữa DTFT (DFT) của một tín hiệu thực là hàm chẵn - đối xứng qua gốc tọa độ. Nên chúng ta chỉ cần xét một nửa chu kỳ là đủ. Tóm lại, để quan sát phổ của tín hiệu chúng ta chỉ cần xét DFT trong 1 nửa chu kỳ và chuyển đổi tương ứng tần số chuẩn hóa thành tần số vật lý. Đoạn code ở trên sẽ thay đổi một chút như sau:
+Chúng ta biết rằng DFT N-điểm là rời rạc hóa tần số của DTFT với $\omega = 2\pi/N$ và DTFT tuần hoàn với chu kỳ $2\pi$ nên trong Matlab DTFT chỉ thể hiện trong 1 chu kỳ $(-\pi, \pi)$ (có thể dùng lệnh ```freqz()``` để kiểm tra). Do vậy, DFT cũng tuần hoàn với chu kỳ $2\pi$, trong Matlab thể hiện  trong 1 chu kỳ $(0,2\pi)$ (có dùng lệnh ```fft()``` để kiểm tra) với phần từ $\pi$ đến $2\pi$ tương ứng với phần $-\pi$ đến 0 của DTFT. Hơn nữa DTFT (DFT) của một tín hiệu thực là hàm chẵn - đối xứng qua gốc tọa độ. Nên chúng ta chỉ cần xét một nửa chu kỳ là đủ. Tóm lại, để quan sát phổ của tín hiệu chúng ta chỉ cần xét DFT trong 1 nửa chu kỳ và chuyển đổi tương ứng tần số chuẩn hóa thành tần số vật lý. Đoạn code ở trên sẽ thay đổi một chút như sau:
 
 ```matlab
 % Take DFT of X
