@@ -57,7 +57,7 @@ $$X_s(j\Omega)=\frac{1}{T_s}\sum_{k=-\infty}^{+\infty}{X_c(j(\Omega-k\Omega_s))}
 
 Với $$\Omega$$ là tần số liên tục và $$\Omega _s =2\pi F_s = 2\pi/T_s$$ là tần số lấy mẫu. Công thức trên có nghĩa là phổ của tín hiệu lấy mẫu là vô số những phổ của tín hiệu liên tục lặp lại ở các tần số bằng một số nguyên lần tần số lấy mẫu $$\Omega_s$$, như hình dưới đây. Lưu ý rằng ở đây chúng ta sử dụng $$\Omega$$ để chỉ tần số góc liên tục, $$\omega$$ để chỉ tần số chuẩn hóa (tần số của phép biến đổi DTFT), dấu ngoặc đơn (.) để chỉ biến liên tục, dấu ngoặc vuông [.] để chỉ biến rời rạc.
 
-![hinh3](/imgages/bai01/sampling.png)
+![hinh3](/imgages/bai-01/sampling.png)
 Hình 3. Biến đổi CFT của tín hiệu liên tục và tín hiệu lấy mẫu
 
 Từ hình vẽ trên cũng suy ra được định lý lấy mẫu Nyquist nổi tiếng: Tần số lấy mẫu phải lớn hơn hoặc bằng 2 lần tần số lớn nhất của tín hiệu. Rõ ràng để khôi phục được tín hiệu tương tự từ các mẫu một cách chính xác nhất thì phổ lặp lại tại các tần số bằng số nguyên lần $$\Omega_s$$ không được xen lẫn vào nhau - như hình b, nếu không sẽ bị xen lẫn vào nhau và không khôi phục được - như hình c. Để thỏa mãn điều đó thì:
@@ -96,6 +96,7 @@ ylabel('Magnitude')
 Và đây là kết quả
 
 ![hinh4](/images/bai-01/sinespectra.png)
+
 Hình 4. Tần số tín hiệu tại vị trí 100 Hz và 200 Hz
 
 *Như vậy bài này đã giúp bạn quan sát được thành phần tần số một cách trực quan dựa vào biến đổi Fourier rời rạc. Đồng thời cũng trình bày một cách ngắn gọn mối quan hệ giữa biến đồi Fourier liên tục CFT, biến đổi Fourier thời gian rời rạc DTFT và biến đổi Fourirer rời rạc DFT. Mấu chốt của vấn đề là phải hiểu được mối quan hệ giữa tần số vật lý của tín hiệu $$F$$ và tần số của phép biến đổi, hay tần số chuẩn hóa $$\omega$$ và tính đối xứng của phổ đối với tín hiệu thực.*
