@@ -29,14 +29,13 @@ plot(abs(Y))
 title('Biến đổi Fourier của x(t)')
 xlabel('Sample')
 ylabel('Magnitude')
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ~~~~
 Đây là đồ thị
 
 ![hinh1](/images/bai-01/noisysinwave.png)  
 Hình 1. Hình dạng tín hiệu trong miền thời gian
 
-![hinh2](/images/bai-01/fftsinwave.png)
+![hinh2](/images/bai-01/fftsinwave.png)  
 Hình 2. Biến đổi Fourier của tín hiệu
 
 Từ đồ thị của biến đổi DFT của tín hiệu (phổ biên độ) thấy rằng có 4 vạch phổ đối xứng nhau ở các vị trí mẫu khoảng gần 350, 550, 850 và 1250 chứ không phải là 2 vạch phổ tại hai tần số 100 Hz và 200 Hz như ta mong đợi. Lý do ở đây là chúng ta đã sử dụng biến đổi DFT chứ không phải là CFT, bây giờ hãy xét mối quan hệ giữa các biến đổi này với nhau, sau đó chúng ta sẽ điều chỉnh lại đoạn code Matlab ở trên để quan sát được đúng 2 vạch phổ tại vị trí 100 Hz và 200 Hz.
@@ -75,7 +74,6 @@ Công thức này cho thấy rằng $$X(e^{j\omega})$$ chính là $$X_s(j\Omega)
 Chúng ta biết rằng DFT N-điểm là rời rạc hóa tần số của DTFT với $$\omega = 2\pi/N$$ và DTFT tuần hoàn với chu kỳ $$2\pi$$ nên trong Matlab DTFT chỉ thể hiện trong 1 chu kỳ $$(-\pi, \pi)$$ (có thể dùng lệnh ```freqz()``` để kiểm tra). Do vậy, DFT cũng tuần hoàn với chu kỳ $$2\pi$$, trong Matlab thể hiện  trong 1 chu kỳ $$(0,2\pi)$$ (có dùng lệnh ```fft()``` để kiểm tra) với phần từ $$\pi$$ đến $$2\pi$$ tương ứng với phần $$-\pi$$ đến 0 của DTFT. Hơn nữa DTFT (DFT) của một tín hiệu thực là hàm chẵn - đối xứng qua gốc tọa độ. Nên chúng ta chỉ cần xét một nửa chu kỳ là đủ. Tóm lại, để quan sát phổ của tín hiệu chúng ta chỉ cần xét DFT trong 1 nửa chu kỳ và chuyển đổi tương ứng tần số chuẩn hóa thành tần số vật lý. Đoạn code ở trên sẽ thay đổi một chút như sau:
 
 ```matlab
-%%%%%%%%%%%%%%%
 % Take DFT of X
 Y=T*fft(X); % Y tuan hoan voi chu ky 0 den $2\pi$
 Flength=L/2; % Do Y doi xung qua $\pi$ nen chi khao sat 1 nua 
@@ -85,12 +83,10 @@ plot(f, abs(Yhalf))
 title('Biến đổi Fourier của x(t)')
 xlabel('Tần số')
 ylabel('Magnitude')
-%%%%%%%%%%%%%%%
 ```
 Và đây là kết quả
 
-![hinh4](/images/bai-01/sinespectra.png)
-
+![hinh4](/images/bai-01/sinespectra.png)  
 Hình 4. Tần số tín hiệu tại vị trí 100 Hz và 200 Hz
 
 *Như vậy bài này đã giúp bạn quan sát được thành phần tần số một cách trực quan dựa vào biến đổi Fourier rời rạc. Đồng thời cũng trình bày một cách ngắn gọn mối quan hệ giữa biến đồi Fourier liên tục CFT, biến đổi Fourier thời gian rời rạc DTFT và biến đổi Fourirer rời rạc DFT. Mấu chốt của vấn đề là phải hiểu được mối quan hệ giữa tần số vật lý của tín hiệu $$F$$ và tần số của phép biến đổi, hay tần số chuẩn hóa $$\omega$$ và tính đối xứng của phổ đối với tín hiệu thực.*
