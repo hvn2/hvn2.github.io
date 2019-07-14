@@ -3,7 +3,7 @@ layout: post
 title: Thử vài tính năng của markdown
 ---
 
-Headers
+# Headers: Bao nhiêu dấu # thì bấy nhiêu mức header
 # H1
 ## H2
 ### H3
@@ -11,84 +11,36 @@ Headers
 ##### H5
 ###### H6
 
-Alternatively, for H1 and H2, an underline-ish style:
+# __Bôi đậm__, _nghiêng_
+_Nghiêng_ (1 dấu sao hoặc 1 dấu gạch dưới)
 
-Alt-H1
-======
+__Đậm__ (2 dấu sao hoặc gạch dưới)
 
-Alt-H2
-------
-H1
-H2
-H3
-H4
-H5
-H6
-Alternatively, for H1 and H2, an underline-ish style:
+**Đậm _nghiêng và đậm_** (có thể kết hợp giữa chúng).
 
-Alt-H1
-Alt-H2
-Emphasis
-Emphasis, aka italics, with *asterisks* or _underscores_.
+~~Gạch chéo~~
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+# Lists
+1. Nếu bắt đầu bằng 1 chấm (1.) thì liệt kê có thứ tự, sau khi xuống dòng thì đánh số hay dấu *, -, + đều hiểu là thứ tự mới
+- Bắt đầu bằng dấu - nhưng vẫn hiện ra thứ tự 2
 
-Combined emphasis with **asterisks and _underscores_**.
+  - Thụt vào ít nhất 2 dấu cách để bắt đầu liệt kê không thứ tự
+  - Bắt đầu bằng - hay dấu + ở đầu đều liệt kê được
+      - Thụt vào thêm 4 dấu cách nữa để liệt kê mức thấp hơn
 
-Strikethrough uses two tildes. ~~Scratch this.~~
-Emphasis, aka italics, with asterisks or underscores.
+  Enter xuống 1 dòng, thụt vào 1 hay nhiều dấu cách để căn lề một đoạn
 
-Strong emphasis, aka bold, with asterisks or underscores.
+  Thêm một đoạn nữa  
+  Dòng trên đánh 2 dấu cách rồi enter là xuống dòng nhưng không ngắt đoạn (cách dòng ít hơn)
 
-Combined emphasis with asterisks and underscores.
+# Links  
+Hai cách để chèn link
 
-Strikethrough uses two tildes. Scratch this.
+[I'm an inline-style link](https://www.google.com) --> [dấu ngoặc vuông là tên xuất hiện trên văn bản], (theo sau là dấu ngoặc đơn chứa link thực sự)
 
-Lists
-(In this example, leading and trailing spaces are shown with with dots: ⋅)
+[I'm an inline-style link with title](https://www.google.com "Google's Homepage") --> sau link trong dấu ngoặc đơn là cặp nháy kép chứa title link, khi đặt chuột vào sẽ nổi title lên
 
-1. First ordered list item
-2. Another item
-⋅⋅* Unordered sub-list. 
-1. Actual numbers don't matter, just that it's a number
-⋅⋅1. Ordered sub-list
-4. And another item.
-
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
-First ordered list item
-Another item
-Unordered sub-list.
-Actual numbers don't matter, just that it's a number
-
-Ordered sub-list
-
-And another item.
-
-You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-To have a line break without a paragraph, you will need to use two trailing spaces.
-Note that this line is separate, but within the same paragraph.
-(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
-Unordered list can use asterisks
-Or minuses
-Or pluses
-Links
-There are two ways to create links.
-
-[I'm an inline-style link](https://www.google.com)
-
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
-
-[I'm a reference-style link][Arbitrary case-insensitive reference text]
+[I'm a reference-style link][Arbitrary case-insensitive reference text] --> 2 cặp dấu ngoặc vuông, dấu ngoặc vuông thứ 2 chứa link có thể điền vào sau
 
 [I'm a relative reference to a repository file](../blob/master/LICENSE)
 
@@ -96,34 +48,18 @@ There are two ways to create links.
 
 Or leave it empty and use the [link text itself].
 
-URLs and URLs in angle brackets will automatically get turned into links. 
-http://www.example.com or <http://www.example.com> and sometimes 
-example.com (but not on Github, for example).
+URLs and URLs trong dấu ngoặc nhọn được hiểu là link luôn. 
+http://www.example.com or <http://www.example.com>.
 
-Some text to show that the reference links can follow later.
+Dưới chỗ này trong file markdown là một loạt các link để chèn vào đoạn trên
 
 [arbitrary case-insensitive reference text]: https://www.mozilla.org
 [1]: http://slashdot.org
 [link text itself]: http://www.reddit.com
-I'm an inline-style link
 
-I'm an inline-style link with title
-
-I'm a reference-style link
-
-I'm a relative reference to a repository file
-
-You can use numbers for reference-style link definitions
-
-Or leave it empty and use the link text itself.
-
-URLs and URLs in angle brackets will automatically get turned into links. http://www.example.com or http://www.example.com and sometimes example.com (but not on Github, for example).
-
-Some text to show that the reference links can follow later.
-
-Images
-Here's our logo (hover to see the title text):
-
+# Images
+Chèn tương tự link, ngoại trừ trước dấu ngoặc vuông đầu có dấu chấm than ![]  
+Đây là kết quả:  
 Inline-style: 
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
@@ -131,19 +67,10 @@ Reference-style:
 ![alt text][logo]
 
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
-Here's our logo (hover to see the title text):
 
-Inline-style: alt text
 
-Reference-style: alt text
-
-Code and Syntax Highlighting
-Code blocks are part of the Markdown spec, but syntax highlighting isn't. However, many renderers -- like Github's and Markdown Here -- support syntax highlighting. Which languages are supported and how those language names should be written will vary from renderer to renderer. Markdown Here supports highlighting for dozens of languages (and not-really-languages, like diffs and HTTP headers); to see the complete list, and how to write the language names, see the highlight.js demo page.
-
-Inline `code` has `back-ticks around` it.
-Inline code has back-ticks around it.
-
-Blocks of code are either fenced by lines with three back-ticks ```, or are indented with four spaces. I recommend only using the fenced code blocks -- they're easier and only they support syntax highlighting.
+# Code and Syntax Highlighting
+Chèn đoạn code trong 3 dấu gạch ngược (chỗ dẫu ~) trên đầu như này ```python (enter) code ở đây (enter) ```
 
 ```javascript
 var s = "JavaScript syntax highlighting";
@@ -159,13 +86,8 @@ print s
 No language indicated, so no syntax highlighting. 
 But let's throw in a <b>tag</b>.
 ```
-var s = "JavaScript syntax highlighting";
-alert(s);
-s = "Python syntax highlighting"
-print s
-No language indicated, so no syntax highlighting in Markdown Here (varies on Github). 
-But let's throw in a <b>tag</b>.
-Tables
+
+# Bảng
 Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.
 
 Colons can be used to align columns.
@@ -186,29 +108,17 @@ Markdown | Less | Pretty
 1 | 2 | 3
 Colons can be used to align columns.
 
-Tables  Are Cool
-col 3 is    right-aligned   $1600
-col 2 is    centered    $12
-zebra stripes   are neat    $1
-There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
-
-Markdown    Less    Pretty
-Still   renders nicely
-1   2   3
-Blockquotes
+# Trích dẫn: Blockquotes
+Dùng dấu lớn hơn  
 > Blockquotes are very handy in email to emulate reply text.
 > This line is part of the same quote.
 
-Quote break.
+##Trích dẫn đoạn dài Quote break.
 
 > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
 Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.
 
-Quote break.
-
-This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can put Markdown into a blockquote.
-
-Inline HTML
+# Inline HTML
 You can also use raw HTML in your Markdown, and it'll mostly work pretty well.
 
 <dl>
@@ -218,11 +128,8 @@ You can also use raw HTML in your Markdown, and it'll mostly work pretty well.
   <dt>Markdown in HTML</dt>
   <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
 </dl>
-Definition list
-Is something people use sometimes.
-Markdown in HTML
-Does *not* work **very** well. Use HTML tags.
-Horizontal Rule
+
+# Horizontal Rule
 Three or more...
 
 ---
@@ -236,15 +143,9 @@ Asterisks
 ___
 
 Underscores
-Three or more...
 
-Hyphens
 
-Asterisks
-
-Underscores
-
-Line Breaks
+#Line Breaks
 My basic recommendation for learning how line breaks work is to experiment and discover -- hit <Enter> once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens. You'll soon learn to get what you want. "Markdown Toggle" is your friend.
 
 Here are some things to try out:
@@ -264,7 +165,7 @@ This line is only separated by a single newline, so it's a separate line in the 
 
 (Technical note: Markdown Here uses GFM line breaks, so there's no need to use MD's two-space line breaks.)
 
-YouTube Videos
+# YouTube Videos
 They can't be added directly but you can add an image with a link to the video like this:
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
@@ -274,4 +175,6 @@ Or, in pure Markdown, but losing the image sizing and border:
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 Referencing a bug by #bugID in your git commit links it to the slip. For example #1.
-
+# Công thức toán
+Conong thức toán ở đây gióng như LaTeX á, bắt đầu bằng dấu đô la cho công thức trong dòng $x^2+2x+1$, hoặc hai dấu đô la cho công thức tách dòng
+$$\sum_{i=1}^{N}{x[n]e^{j\omega N}}$$
