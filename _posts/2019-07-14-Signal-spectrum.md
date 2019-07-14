@@ -10,8 +10,7 @@ Chắc chắn những người từng học về tín hiệu và hệ thống đ
 Bây giờ hãy dùng công cụ biến đổi Fourier rời rạc (Discrete Fourier Transform: DFT) của Matlab để giải quyết. (DFT trong Matlab là hàm ```fft()```).
 
 Ok, hãy tạo một tín hiệu như đề bài đã cho
-~~~~matlab
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+~~~~matlab%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Fs = 500;             % Sampling frequency                    
 T = 1/Fs;             % Sampling period = 2 ms    
 L = 1500;             % Length of signal 3 seconds
@@ -33,17 +32,14 @@ ylabel('Magnitude')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ~~~~
 Đây là đồ thị
+<center>
+    ![hinh1](/images/bai-01/noisysinwave.png)  
+    Hình 1. Hình dạng tín hiệu trong miền thời gian
 
-<div class="imgcap">
-<img src ="/images/bai-01/noisysinwave.png" width = "500" align = "center">
-<div class="thecap"> Tín hiệu trong miền thời gian <br></div>
-</div>
 
-![hinh1](/images/bai-01/noisysinwave.png)  
-Hình 1. Hình dạng tín hiệu trong miền thời gian
-
-![hinh2](/images/bai-01/fftsinwave.png)  
-Hình 2. Biến đổi Fourier của tín hiệu
+    ![hinh2](/images/bai-01/fftsinwave.png)
+    Hình 2. Biến đổi Fourier của tín hiệu
+</center>
 
 Từ đồ thị của biến đổi DFT của tín hiệu (phổ biên độ) thấy rằng có 4 vạch phổ đối xứng nhau ở các vị trí mẫu khoảng gần 350, 550, 850 và 1250 chứ không phải là 2 vạch phổ tại hai tần số 100 Hz và 200 Hz như ta mong đợi. Lý do ở đây là chúng ta đã sử dụng biến đổi DFT chứ không phải là CFT, bây giờ hãy xét mối quan hệ giữa các biến đổi này với nhau, sau đó chúng ta sẽ điều chỉnh lại đoạn code Matlab ở trên để quan sát được đúng 2 vạch phổ tại vị trí 100 Hz và 200 Hz.
 
