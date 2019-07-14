@@ -9,7 +9,7 @@ Một trong những ứng dụng chủ yếu và quan trọng nhất của DSP l
 
 **Hãy bắt đầu bằng một ví dụ:** Thiết kế bộ lọc số thông thấp để có thể lọc được những tần số dưới 1000 Hz của một tín hiệu âm thanh đầu vào (giả sử âm thanh có tần số từ 0 đến 20 kHz). Để đơn giản, trong ví dụ này chỉ tìm ra đáp ứng xung của bộ lọc mà không trình bày việc cài đặt bộ lọc.
 
-Đây là bài toán thiết kế bộ lọc thông thấp. Bộ lọc ở đây được hiểu là bộ lọc chọn lọc tần số, vì nó cho những tần số dưới một tần số nhất định - tần số cắt (trong trường hợp này bằng $$\omega_c =2\pi F_c$$ với $$F_c= 1000\ Hz$$) đi qua và chặn những tần cao hơn tần số cắt đó. Các bộ lọc khác như bộ lọc thông cao, bộ lọc thông dải, bộ lọc chắn dải cũng định nghĩa tương tự. Đáp ứng tần số của bộ lọc thông thấp được mô tả như sau:
+Đây là bài toán thiết kế bộ lọc thông thấp. Bộ lọc ở đây được hiểu là bộ lọc chọn lọc tần số, vì nó cho những tần số dưới một tần số nhất định - tần số cắt (trong trường hợp này bằng $\omega_c =2\pi F_c$ với $F_c= 1000\ Hz$) đi qua và chặn những tần cao hơn tần số cắt đó. Các bộ lọc khác như bộ lọc thông cao, bộ lọc thông dải, bộ lọc chắn dải cũng định nghĩa tương tự. Đáp ứng tần số của bộ lọc thông thấp được mô tả như sau:
 
 $$H(e^{j\omega}) =
 
