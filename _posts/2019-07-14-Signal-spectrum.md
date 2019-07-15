@@ -1,3 +1,8 @@
+---
+layout: default
+title: QUAN SÁT PHỔ TÍN HIỆU
+---
+
 **Trong bài này sẽ hướng dẫn cách quan sát thành phần tần số (phổ) của một tín hiệu hình sin bằng biến đổi Fourier thực hiện trong Matlab.**
 
 
