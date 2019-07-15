@@ -45,7 +45,7 @@ Với những ràng buộc như trên thì bộ lọc của chúng ta cần thi�
 
 Trong đó loại 2 không thể là bộ lọc thông cao, loại 3 và loại 4 không thể là bộ lọc thông thấp và thông cao. Tính chất của đáp ứng tần số và đáp ứng xung của các loại này bạn có thể đọc thêm trong tài liệu (đọc thêm Xử lý tín hiệu số, chương 5, tập 1 - Nguyễn Quốc Trung).
 
-Với những phân tích như trên, để thiết kế bộ lọc FIR thông thấp theo phương pháp cửa sổ chính là giới hạn độ dài của đáp ứng xung và dịch nó thành nhân quả. Do tính chất của bộ lọc FIR pha tuyến tính chúng ta sẽ thường chọn bộ lọc FIR loại 1. Nói cách khác chúng ta dịch đáp ứng xung của bộ lọc đi $\alpha = \frac{N-1}{2}$ mẫu và nhân với cửa sổ chiều dài $N$ là một số lẻ và đối xứng qua $\frac{N-1}{2}$$. Gọi $$h[n]$ là đáp ứng xung của bộ lọc, $h_d[n]$ là đáp ứng xung của bộ lọc lý tưởng và $w[n]$ là cửa sổ. Thì:
+Với những phân tích như trên, để thiết kế bộ lọc FIR thông thấp theo phương pháp cửa sổ chính là giới hạn độ dài của đáp ứng xung và dịch nó thành nhân quả. Do tính chất của bộ lọc FIR pha tuyến tính chúng ta sẽ thường chọn bộ lọc FIR loại 1. Nói cách khác chúng ta dịch đáp ứng xung của bộ lọc đi $\alpha = \frac{N-1}{2}$ mẫu và nhân với cửa sổ chiều dài $N$ là một số lẻ và đối xứng qua $\frac{N-1}{2}$$. Gọi $h[n]$ là đáp ứng xung của bộ lọc, $h_d[n]$ là đáp ứng xung của bộ lọc lý tưởng và $w[n]$ là cửa sổ. Thì:
 
 $$h[n] =
 \begin{cases}h_d[n-\alpha]w[n], \ với \ 0 \leq n \leq N \\ 0 \ còn\ lại
@@ -61,7 +61,7 @@ Hình 3. Tích chập trong miền tần số
 
 Dựa vào Hình 3 và tính chất của các loại cửa sổ, rút ra một số nhận xét như sau:
 
-  - Độ rộng của búp chính (main lobe) của cửa sổ tỷ lệ nghịch với N, điều này cũng phù hợp vì tín hiệu càng rộng trong miền thời gian sẽ càng hẹp trong miền tần số và ngược lại. Tỉ lệ độ cao (biên độ) của búp sóng chính và búp sóng phụ (gần nhất) gần như không phụ thuộc vào N, điều này dẫn đến suy hao ở dải chắn $$_s$ không phụ thuộc vào N. 
+  - Độ rộng của búp chính (main lobe) của cửa sổ tỷ lệ nghịch với N, điều này cũng phù hợp vì tín hiệu càng rộng trong miền thời gian sẽ càng hẹp trong miền tần số và ngược lại. Tỉ lệ độ cao (biên độ) của búp sóng chính và búp sóng phụ (gần nhất) gần như không phụ thuộc vào N, điều này dẫn đến suy hao ở dải chắn $A_s$ không phụ thuộc vào N. 
   - Độ rộng búp chính tỷ lệ thuận với độ rộng vùng chuyển tiếp giữa dải thông và dải chắn. Do vậy nếu N (bậc bộ lọc)  càng lớn thì vùng chuyển tiếp giữa dải thông và dải chắn càng nhỏ.
   - Búp phụ (side lobe) ảnh hưởng đến độ nhấp nhô (ripples) ở cả dải thông và dải chắn, các búp phụ càng nhấp nhô thì dải thông, dải chắn càng nhấp nhô.
   - Phép tích chập tạo ra sự dao động ở vùng tấn số cắt $\omega_c$ (hiện tượng Gibbs)
@@ -101,7 +101,7 @@ Trình tự thiết kế bộ lọc FIR pha tuyến tính bằng phương pháp 
 1. Tính toán các thông số đặc tả của bộ lọc, nếu các thông số chưa ở dạng tương đối (đơn vị $dB$) thì chuyển về dạng tương đối.
 2. Dựa vào yêu cầu suy hao dải chắn để chọn loại cửa phù hợp
 3. Dựa vào độ rộng vùng chuyển tiếp dải thông dải chắn để tính số bậc của bộ lọc N
-4. Tìm ra đáp ứng xung bằng tích giữa đáp ứng xung lý tưởng (dịch đi $n_$$ mẫu) nhân với cửa sổ
+4. Tìm ra đáp ứng xung bằng tích giữa đáp ứng xung lý tưởng (dịch đi $\frac{N-1}{2}$ mẫu) nhân với cửa sổ
 5. Kiểm tra lại xem có thỏa mãn các thông số đề bài đặt ra
 
 *Việc tính toán bằng tay có vẻ khá phức tạp, nhưng nếu sử dụng Matlab thì rất đơn giản. Bạn có thể sử dụng sẵn Filter Design Apps, Filter Design Toolbox hoặc tự viết chương trình để tính các hệ số đáp ứng xung bộ lọc. Bài tiếp theo sẽ trình bày việc thiết kế bộ lọc bằng Matlab.*
