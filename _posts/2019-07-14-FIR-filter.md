@@ -125,7 +125,7 @@ Signal Processing Toolbox của Matlab đã cung cấp sẵn các cửa sổ (Đ
     w = blackman(M): Cửa sổ Blackman chiều dài M
     w = kaiser (M,beta): Cửa sổ Kaiser chiều dài M, hệ số $\beta$
 ```
-Đáp ứng xung của bộ loc FIR được tính bằng tích giữa cửa sổ và đáp ứng xung của bộ lọc FIR lý tưởng (dịch $\alpha=\frac{M-1}{2}$). Do vậy cần viết một hàm tính đáp ứng xung lý tưởng của bộ lọc như sau:
+Đáp ứng xung của bộ loc FIR được tính bằng tích giữa cửa sổ và đáp ứng xung của bộ lọc FIR lý tưởng (dịch $\alpha=\frac{M-1}{2}$). Do vậy cần viết một hàm tính đáp ứng xung lý tưởng của bộ lọc:
 ```matlab
 %%%% Hàm tính đáp ứng xung bộ lọc lý tưởng%%%
 function hd = ideal_lp(wc,M)
@@ -141,7 +141,7 @@ alpha = (M-1)/2; n = [0:1:(M-1)];
 m = n - alpha; fc = wc/pi; hd = fc*sinc(fc*m);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
-Để quan sát các thông số của bộ lọc (VD: Đáp ứng tần số, đáp ứng pha, trễ nhóm,...) xem có thỏa mãn các yêu cầu thiết kế hay không, trong Matlab có thể dùng lệnh ```freqz()``` và ```phasez()```. Tuy nhiên để thuận tiện cho việc quan sát các thông số bộ lọc thuận tiện hơn, chúng ta sẽ viết một hàm tính đồng thời các thông số của bộ lọc như sau:
+Để quan sát các thông số của bộ lọc (VD: Đáp ứng tần số, đáp ứng pha, trễ nhóm,...) xem có thỏa mãn các yêu cầu thiết kế hay không, trong Matlab có thể dùng lệnh ```freqz()``` và ```phasez()```. Tuy nhiên để thuận tiện cho việc quan sát các thông số bộ lọc thuận tiện hơn, chúng ta sẽ viết một hàm tính đồng thời các thông số của bộ lọc:
 ```matlab
 %%%Hàm tính các tham số (tần số) bộ lọc%%%
 function [db,mag,pha,grd,w] = freqz_m(b,a)
@@ -167,7 +167,7 @@ Bây giờ vận dụng các kiến thức và hàm ở trên để thiết kế
 **Ví dụ:** Thiết kế bộ lọc FIR thỏa mãn các thông số sau:  
 $$ \omega_p = 0.2\pi, R_p=0.25 dB \\
 \omega_s = 0.3\pi, A_s= 50 dB $$
-*Giải:  
+*Giải*:  
 - Tần số cắt: $\omega_c = (\omega_s + \omega_p)/2=0.25\pi$
 - Độ rộng dải chuyển tiếp: $\Delta \Omega = \omega_s - \omega_p=0.1\pi$
 - Suy hao ở dải chắn $A_s=50dB$ nên có thể chọn cửa sổ Hamming hoặc Blackman, ở đây chọn cửa sổ Hamming, độ dài cửa sổ được tính dựa vào công thức độ rộng dải chuyển tiếp: $\Delta\Omega = 6.6\pi/N$
