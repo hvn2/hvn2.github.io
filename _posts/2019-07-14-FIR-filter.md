@@ -203,4 +203,4 @@ Kết quả thiết kế như hình 4.
 Hình 4. Kết quả thiết kế
 $$A_s=52dB, \ R_p = 0.0394 dB$$
 
-*Như vậy bài này đã trình bày thiết kế bộ lọc FIR bằng phương pháp cửa sổ dựa vào các loại cửa sổ đã được cung cấp sẵn bởi Matlab. Đồng thời qua một số dòng code đơn giản có thể quan sát trực quan các thông số của bộ lọc.**
+*Như vậy bài này đã trình bày thiết kế bộ lọc FIR bằng phương pháp cửa sổ dựa vào các loại cửa sổ đã được cung cấp sẵn bởi Matlab. Đồng thời qua một số dòng code đơn giản có thể quan sát trực quan các thông số của bộ lọc.*
