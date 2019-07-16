@@ -106,7 +106,7 @@ Trình tự thiết kế bộ lọc FIR pha tuyến tính bằng phương pháp 
 
 *Việc tính toán bằng tay có vẻ khá phức tạp, nhưng nếu sử dụng Matlab thì rất đơn giản. Bạn có thể sử dụng sẵn Filter Design Apps, Filter Design Toolbox hoặc tự viết chương trình để tính các hệ số đáp ứng xung bộ lọc. Bài tiếp theo sẽ trình bày việc thiết kế bộ lọc bằng Matlab.*
 
-#MATLAB: THIẾT KẾ BỘ LỌC FIR THEO PHƯƠNG PHÁP CỬA SỔ
+# MATLAB: THIẾT KẾ BỘ LỌC FIR THEO PHƯƠNG PHÁP CỬA SỔ
 
 Nhắc lại về trình tự thiết kế bộ lọc FIR theo phương pháp cửa sổ:
 
