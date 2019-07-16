@@ -106,4 +106,100 @@ Trình tự thiết kế bộ lọc FIR pha tuyến tính bằng phương pháp 
 
 *Việc tính toán bằng tay có vẻ khá phức tạp, nhưng nếu sử dụng Matlab thì rất đơn giản. Bạn có thể sử dụng sẵn Filter Design Apps, Filter Design Toolbox hoặc tự viết chương trình để tính các hệ số đáp ứng xung bộ lọc. Bài tiếp theo sẽ trình bày việc thiết kế bộ lọc bằng Matlab.*
 
+#MATLAB: THIẾT KẾ BỘ LỌC FIR THEO PHƯƠNG PHÁP CỬA SỔ
 
+Nhắc lại về trình tự thiết kế bộ lọc FIR theo phương pháp cửa sổ:
+
+- Tính toán các thông số đặc tả của bộ lọc, nếu các thông số chưa ở dạng tương đối (đơn vị $dB$ ) thì chuyển về dạng tương đối
+- Dựa vào yêu cầu suy hao dải chắn để chọn loại cửa phù hợp
+- Dựa vào độ rộng vùng chuyển tiếp dải thông dải chắn để tính số bậc của bộ lọc N
+- Tìm ra đáp ứng xung bằng tích giữa đáp ứng xung lý tưởng (dịch đi $n_0$ mẫu) nhân với cửa sổ
+- Kiểm tra lại xem có thỏa mãn các thông số đề bài đặt ra.
+
+Signal Processing Toolbox của Matlab đã cung cấp sẵn các cửa sổ (Đặc điểm chi tiết của các loại cửa sổ có thể xem thông qua Apps Window Design), ví dụ:
+```window types
+    w = rectwin(M): Cửa sổ chữ nhật chiều dài M
+    w = bartlett(M): Cửa sổ tam giác chiều dài M
+    w = hann(M): Cửa sổ Hanning chiều dài M
+    w = hamming(M): Cửa sổ Hamming chiều dài M
+    w = blackman(M): Cửa sổ Blackman chiều dài M
+    w = kaiser (M,beta): Cửa sổ Kaiser chiều dài M, hệ số $\beta$
+```
+Đáp ứng xung của bộ loc FIR được tính bằng tích giữa cửa sổ và đáp ứng xung của bộ lọc FIR lý tưởng (dịch $\alpha=\frac{M-1}{2}$). Do vậy cần viết một hàm tính đáp ứng xung lý tưởng của bộ lọc như sau:
+```matlab
+%%%% Hàm tính đáp ứng xung bộ lọc lý tưởng%%%
+function hd = ideal_lp(wc,M)
+% Ideal LowPass filter computation
+% Ham tao ra dap ung xung ly tuong chieu dai M
+% --------------------------------
+% Input:
+    % wc = Tan so cat, don vi radians
+    % M = Chieu dai dap ung xung 0 - (M-1)
+% Output
+    % hd = fc*sinc(fc*m), ideal impulse response between 0 to M-1
+alpha = (M-1)/2; n = [0:1:(M-1)];
+m = n - alpha; fc = wc/pi; hd = fc*sinc(fc*m);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+```
+Để quan sát các thông số của bộ lọc (VD: Đáp ứng tần số, đáp ứng pha, trễ nhóm,...) xem có thỏa mãn các yêu cầu thiết kế hay không, trong Matlab có thể dùng lệnh ```freqz()``` và ```phasez()```. Tuy nhiên để thuận tiện cho việc quan sát các thông số bộ lọc thuận tiện hơn, chúng ta sẽ viết một hàm tính đồng thời các thông số của bộ lọc như sau:
+```matlab
+%%%Hàm tính các tham số (tần số) bộ lọc%%%
+function [db,mag,pha,grd,w] = freqz_m(b,a)
+% Modified version of freqz subroutine
+% Tinh cac thong so cau dap ung tan so bo loc so
+% ------------------------------------
+% Output
+    % db = Dap ung bien do tuong doi |H(e^jw)|, don vi dB tinh tu 0 den pi radians
+    % mag = Dap ung bien do tuyet doi |H(e^jw)| khong co don vi tinh tu 0 den pi radians
+    % pha = Dap ung pha, don vi radians tinh tu 0 den pi radians
+    % grd = Tre nhom (group delay) tinh tu 0 den pi radians
+    % w = Lay mau tan so 501 diem tu 0 den pi radians
+% Input
+    % b = tu so cua da thuc H(z) (Đối với bộ lọc FIR thì b = h)
+    % a = mau so cua da thuc H(z) (Đối với bộ lọc FIR thì a = [1])
+[H,w] = freqz(b,a,1000,'whole');
+H = (H(1:1:501))'; w = (w(1:1:501))';
+mag = abs(H); db = 20*log10((mag+eps)/max(mag));
+pha = angle(H); grd = grpdelay(b,a,w);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+```
+Bây giờ vận dụng các kiến thức và hàm ở trên để thiết kế bộ lọc với các yêu cầu sau:  
+*Ví dụ:** Thiết kế bộ lọc FIR thỏa mãn các thông số sau:  
+$$ \omega_p = 0.2\pi, R_p=0.25 dB \\
+\omega_s = 0.3\pi, A_s= 50 dB $$
+*Giải:**  
+- Tần số cắt: $\omega_c = (\omega_s + \omega_p)/2=0.25\pi$
+- Độ rộng dải chuyển tiếp: $\Delta \Omega = \omega_s - \omega_p=0.1\pi$
+- Suy hao ở dải chắn $A_s=50dB$ nên có thể chọn cửa sổ Hamming hoặc Blackman, ở đây chọn cửa sổ Hamming, độ dài cửa sổ được tính dựa vào công thức độ rộng dải chuyển tiếp: $\Delta\Omega = 6.6\pi/N$
+```matlab
+%%%%%Ví dụ thiết kế bộ lọc FIR%%%%%
+ wp = 0.2*pi; ws = 0.3*pi; 
+ Omega_S = ws - wp; %Dai chuyen tiep
+ M = ceil(6.6*pi/Omega_S) + 1; % Cua so Hamming
+ n=[0:1:M-1];
+ wc = (ws+wp)/2; % Ideal LPF cutoff frequency
+ hd = ideal_lp(wc,M);
+ w_ham = (hamming(M))';
+ h = hd .* w_ham;
+ [db,mag,pha,grd,w] = freqz_m(h,1);
+ delta_w = 2*pi/1000; % sample of frequency
+ Rp = -(min(db(1:1:wp/delta_w+1))) % Actual Passband Ripple
+ As = -round(max(db(ws/delta_w+1:1:501))) % Min Stopband attenuation
+% plots
+ subplot(2,2,1); stem(n,hd); title('Ideal Impulse Response')
+ axis([0 M-1 -0.1 0.3]); xlabel('n'); ylabel('hd(n)')
+ subplot(2,2,2); stem(n,w_ham);title('Hamming Window')
+ axis([0 M-1 0 1.1]); xlabel('n'); ylabel('w(n)')
+ subplot(2,2,3); stem(n,h);title('Actual Impulse Response')
+ axis([0 M-1 -0.1 0.3]); xlabel('n'); ylabel('h(n)')
+ subplot(2,2,4); plot(w/pi,db);title('Magnitude Response in dB');grid
+ axis([0 1 -100 10]); xlabel('frequency in pi units'); ylabel('Decibels')
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+```
+Lưu ý trong đoạn code trên có tính suy hao tối thiểu ở dải chắn $A_s$ và độ gợn sóng ở dải thông $R_p$, cả hai thông số này đều thỏa mãn điều kiện thiết kế nên thiết kế ở trên đạt yêu cầu. Giả sử nếu $R_p$ không đạt yêu cầu thì có thể thử loại cửa sổ khác (lưu ý: Độ gợn sóng phụ thuộc vào độ gợn sóng của các búp sóng phụ của cửa sổ).
+Kết quả thiết kế như hình 4.
+![hinh4](./images/bai-02/fir_example.png)  
+Hình 4. Kết quả thiết kế
+$$A_s=52dB, \ R_p = 0.0394 dB$$
+
+*Như vậy bài này đã trình bày thiết kế bộ lọc FIR bằng phương pháp cửa sổ dựa vào các loại cửa sổ đã được cung cấp sẵn bởi Matlab. Đồng thời qua một số dòng code đơn giản có thể quan sát trực quan các thông số của bộ lọc.**
