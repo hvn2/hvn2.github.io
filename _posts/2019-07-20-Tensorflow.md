@@ -105,7 +105,7 @@ Kết quả:
 
 Để sử dụng Varible phải khởi tạo cho nó. Ví dụ:
 
-```python
+``` python
 m= 2*m
 m1 = 2+m1
 init = tf.global_variables_initializer()
@@ -120,5 +120,6 @@ Mỗi lần chạy là giá trị của m được nhân 2: [[ 64 128]
 Mỗi lần chạy là giá trị của m1 được cộng 2: [[10 11]
  [12 13]]
  ```
+ Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Bây giờ vận dụng TF để thử một ví dụ cơ bản: Linear Regression
 
- 
+ ## Linear Regression với Tensorflow
