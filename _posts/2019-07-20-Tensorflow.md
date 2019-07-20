@@ -7,9 +7,9 @@ Tensorflow (TF) là một thư viện mã nguồn mở phát triển bởi Googl
 
 Trong phần đầu của bài viết này sẽ trình bày một số khái niệm cơ bản của TF ở mức độ trừu tượng thấp (Low level API). Để chạy một chương trình (tính toán) trong TF cần phải xây dựng một tf.Graph (luồng dữ liệu) thực hiện tf.Session (chạy luồng dữ liệu đó). Hai khái niệm này giúp cho TF có thể thực hiện một cách nhanh chóng thông qua tính toán phân tán (thực ra cũng chẳng cần quan tâm làm gì).
 ## tf.Graph()
- TF định nghĩa một sơ đồ luồng dữ liệu (tf.Graph) là một dãy các toán tử TF (Tensorflow operation) sắp xếp thành một sơ đồ (graph). Mỗi sơ đồ gồm có 2 đối tượng:
-- tf.Operation (ops): Thể hiện bằng các node của sơ đồ, Operation thông thường là các phép toán trả về kết quả là tensor
-- tf.Tensor: Là các cạnh của sơ đồ, thể hiện giá trị sẽ chạy qua sơ đồ dữ liệu. Tensor dịch ra tiếng Việt là khối dữ liệu (nhiều chiều). Trong TF thì số chiều của tensor gọi là rank
+TF định nghĩa một sơ đồ luồng dữ liệu (tf.Graph) là một dãy các toán tử TF (Tensorflow operation) sắp xếp thành một sơ đồ (graph). Mỗi sơ đồ gồm có 2 đối tượng:
+- tf.Operation (ops): Thể hiện bằng các node của sơ đồ, Operation thông thường là các phép toán trả về kết quả là tensor.
+- tf.Tensor: Là các cạnh của sơ đồ, thể hiện giá trị sẽ chạy qua sơ đồ dữ liệu. Tensor dịch ra tiếng Việt là khối dữ liệu (nhiều chiều). Trong TF thì số chiều của tensor gọi là rank.
 ```
     3 --> a rank 0 tensor; a scalar with shape [],
     [1., 2., 3.] --> a rank 1 tensor; a vector with shape [3]
@@ -20,16 +20,52 @@ Trong phần đầu của bài viết này sẽ trình bày một số khái ni�
     Đếm số phần tử trong từng dấu ngoặc vuông suy ra số phần tử trong chiều (shape). Ví dụ [[[1., 2., 3.]], [[7., 8., 9.]]], dấu ngoặc vuông đầu tiên có 2 phần tử, dấu ngoặc thứ 2 có 1 phần tử, dấu ngoặc thứ 3 có 3 phần tử $\Rightarrow$ shape (2,1,3)
 
 Ví dụ: Grap như hình 1 trong TF sẽ thực hiện bằng các câu lệnh sau:
-    ```python
-    a = tf.constant(2, name='a')
-    b = tf.constant(3, name = 'b')
-    c = tf.constant(4, name ='c')
-    x = tf.add(a, b)
-    y = tf.multiply(x,c)
-    ```
-<hr>
+
+```python
+a = tf.constant(2, name='a')
+b = tf.constant(3, name = 'b')
+c = tf.constant(4, name ='c')
+x = tf.add(a, b)
+y = tf.multiply(x,c)
+print(a)
+print(x)
+print(y)
+```
+
 <div class="imgcap">
  <img src ="/images/bai-03/tfgraph.PNG" align = "center" width = "80">
  <div class = "thecap">Hình 1. tf.grahp()</div>
 </div>
-<hr>
+
+Khi chạy chương trình trên chỉ in ra tên, số chiều (shape) và loại (dtype) dữ liệu của các tensor mà chưa cho ra giá trị của phép tính.
+```python
+Tensor("a_7:0", shape=(), dtype=int32)
+Tensor("Add_7:0", shape=(), dtype=int32)
+Tensor("Mul_7:0", shape=(), dtype=int32)
+```
+ Muốn thực thi chương trình trên thì cần phải tạo một runtime cho nó
+## tf.Session()
+Có hai cách tạo Session (chọn 1 trong 2 cách). Có thể hiểu ```tf.Gphaph()``` giống như là tạo ra một file mã nguồn (```.py```) và ```tf.Session()``` là chạy mã nguồn đó.
+
+```python
+sess = tf.Session()
+print(sess.run(a))
+print(sess.run(x))
+print(sess.run(y))
+sess.close()
+
+'''Cách này tự động close session'''
+with tf.Session() as sess:
+    print(sess.run(a))
+    print(sess.run(x))
+    print(sess.run(y))
+```
+
+Sẽ cho ra kết quả:
+
+```python
+2
+5
+20
+```
+## Placeholder và Variable
