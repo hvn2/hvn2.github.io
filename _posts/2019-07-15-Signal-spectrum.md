@@ -52,9 +52,10 @@ $$x_s(t) = x_c(t).s(nT_s)$$
 Biến đổi Fourier liên tục của $x_s(t)$ là tích chập của biến đổi Fourier liên tục của $x(t)$ và $s(t)$. Tham khảo tài liệu về Xử lý tín hiệu số để có kết quả như sau:
 
 $$
-\begin(equation)
+
+\begin{equation}
 X_s(j\Omega)=\frac{1}{T_s}\sum_{k=-\infty}^{+\infty}{X_c(j(\Omega-k\Omega_s))}
-\end(equation)
+\end{equation}
 $$
 
 Với $\Omega$ là tần số liên tục và $\Omega _s =2\pi F_s = 2\pi/T_s$ là tần số lấy mẫu. Công thức trên có nghĩa là phổ của tín hiệu lấy mẫu là vô số những phổ của tín hiệu liên tục lặp lại ở các tần số bằng một số nguyên lần tần số lấy mẫu $\Omega_s$, như hình dưới đây. Lưu ý rằng ở đây chúng ta sử dụng $\Omega$ để chỉ tần số góc liên tục, $\omega$ để chỉ tần số chuẩn hóa (tần số của phép biến đổi DTFT), dấu ngoặc đơn (.) để chỉ biến liên tục, dấu ngoặc vuông [.] để chỉ biến rời rạc.
