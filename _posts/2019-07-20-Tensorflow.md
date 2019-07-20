@@ -17,7 +17,7 @@ Trong phần đầu của bài viết này sẽ trình bày một số khái ni�
 ```
     **Quy luật:** Đếm dấu ngoặc vuông suy ra rank, ví dụ [[[1., 2., 3.]], [[7., 8., 9.]]] có 3 dấu ngoặc vuông $\Rightarrow$ rank(3). 
 
-    Đếm số phần tử trong từng dấu ngoặc vuông suy ra số phần tử trong chiều (shape). Ví dụ [[[1., 2., 3.]], [[7., 8., 9.]]], dấu ngoặc vuông đầu tiên có 2 phần tử, dấu ngoặc thứ 2 có 1 phần tử, dấu ngoặc thứ 3 có 3 phần tử $Rightarrow$ shape (2,1,3)
+    Đếm số phần tử trong từng dấu ngoặc vuông suy ra số phần tử trong chiều (shape). Ví dụ [[[1., 2., 3.]], [[7., 8., 9.]]], dấu ngoặc vuông đầu tiên có 2 phần tử, dấu ngoặc thứ 2 có 1 phần tử, dấu ngoặc thứ 3 có 3 phần tử $\Rightarrow$ shape (2,1,3)
 
 Ví dụ: Grap như hình 1 trong TF sẽ thực hiện bằng các câu lệnh sau:
     ```python
