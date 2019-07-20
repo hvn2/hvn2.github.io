@@ -52,7 +52,6 @@ $$x_s(t) = x_c(t).s(nT_s)$$
 Biến đổi Fourier liên tục của $x_s(t)$ là tích chập của biến đổi Fourier liên tục của $x(t)$ và $s(t)$. Tham khảo tài liệu về Xử lý tín hiệu số để có kết quả như sau:
 
 $$
-
 \begin{equation}
 \label{eq:1}
 X_s(j\Omega)=\frac{1}{T_s}\sum_{k=-\infty}^{+\infty}{X_c(j(\Omega-k\Omega_s))}
@@ -70,11 +69,21 @@ $2\Omega_H \leqslant \Omega_s$
 
 Gọi $x[n]$ là dãy rời rạc từ dãy lấy mẫu $x[n]=x_c(nT_s)$, biến đổi Fourier thời gian rời rạc của $x[n]$ có dạng:
 
-$$X(e^{j\omega})=\sum_{n=-\infty}^{+\infty}{x[n]e^{j\omega n}}$$
+$$
+\begin{equation}
+\label{eq:2}
+X(e^{j\omega})=\sum_{n=-\infty}^{+\infty}{x[n]e^{j\omega n}}
+\end{equation}
+$$
 
-Đối chiếu công thức này với công thức biến đổi Fourier liên tục của $x_s(t)$ (định nghĩa như sau: $X_s(j\Omega)=\sum_{n=-\infty}^{+\infty} x_c(nT_s)e^{-j\Omega Tn}$) và kết quả $X_s(j\Omega)$ ở trên có thể thấy rằng nó chính là công thức trên với $\omega = \Omega T_s$
+Đối chiếu công thức \ref{eq:2} với công thức biến đổi Fourier liên tục của $x_s(t)$ (định nghĩa như sau: $X_s(j\Omega)=\sum_{n=-\infty}^{+\infty} x_c(nT_s)e^{-j\Omega Tn}$) và kết quả $X_s(j\Omega)$ ở công thức \ref{eq:1} có thể thấy rằng nó chính là công thức \ref{eq:2} với $\omega = \Omega T_s$
 
-$$X(e^{j\omega})=\frac{1}{T_s}\sum_{k=-\infty}^{+\infty}X_c(j(\frac{\omega}{T_s}-\frac{2\pi k}{T_s}))$$
+$$
+\begin{equation}
+\labe{eq:3}
+X(e^{j\omega})=\frac{1}{T_s}\sum_{k=-\infty}^{+\infty}X_c(j(\frac{\omega}{T_s}-\frac{2\pi k}{T_s}))
+\end{equation}
+$$
 
 Công thức này cho thấy rằng $X(e^{j\omega})$ chính là $X_s(j\Omega)$ với trục tần số được tỷ lệ hóa với $T_s$, hay $\omega=\Omega T_s$. Hoặc mối quan hệ giữa tần số vật lý $F$ và tần số góc chuẩn hóa $\omega$ là $F=\frac{\Omega}{2\pi} = \frac{\omega}{2\pi T_s}=\frac{\omega}{2\pi}F_s$. Nếu tần số tín hiệu bằng đúng tần số Nyquist ($F=\frac{F_s}{2}$) thì $\omega=\pi$. Điều thú vị này chỉ cho bạn rằng đối với tín hiệu có băng thông giới hạn (band limited signal), khi biểu diễn nó trong miền $\omega$ thì phổ của nó không bao giờ vượt quá $\pi$, đó là vì tần số lớn nhất của nó không được vượt quá tần số Nyquist $F_s/2 \equiv \omega = \pi$. Đó cũng chính là lý do đáp ứng tần số của bộ lọc thông thấp (lý tưởng) thì bằng 1 ở vùng $\omega$ gần 0 và đáp ứng tần số của bộ lọc thông cao thì bằng 1 ở vùng $\omega$ gần $\pi$.
 
