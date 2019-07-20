@@ -14,11 +14,16 @@ Trong phần đầu của bài viết này sẽ trình bày một số khái ni�
     3 --> a rank 0 tensor; a scalar with shape [],
     [1., 2., 3.] --> a rank 1 tensor; a vector with shape [3]
     [[1., 2., 3.], [4., 5., 6.]] --> a rank 2 tensor; a matrix with shape [2, 3]
+```
     **Quy luật:** Đếm dấu ngoặc vuông suy ra rank, ví dụ [[[1., 2., 3.]], [[7., 8., 9.]]] có 3 dấu ngoặc vuông $\rarrow$ rank(3). 
 
     Đếm số phần tử trong từng dấu ngoặc vuông suy ra số phần tử trong chiều (shape). Ví dụ [[[1., 2., 3.]], [[7., 8., 9.]]], dấu ngoặc vuông đầu tiên có 2 phần tử, dấu ngoặc thứ 2 có 1 phần tử, dấu ngoặc thứ 3 có 3 phần tử $rarrow$ shape (2,1,3)
-```
+
 Ví dụ: Grap như hình 1 trong TF sẽ thực hiện bằng các câu lệnh sau:
 
-<img src="/images/bai-03/tfgraph.PNG"
-align="middle">
+<hr>
+<div class="imgcap">
+ <img src ="/images/bai-03/tfgraph.PNG" align = "center" width = "400">
+ <div class = "thecap">Hình 1. Minh hoạ nghiệm cho bài toán canh tác.</div>
+</div>
+<hr>
