@@ -105,7 +105,7 @@ Kết quả:
 
 Để sử dụng Varible phải khởi tạo cho nó. Ví dụ:
 
-``` python
+```python
 m= 2*m
 m1 = 2+m1
 init = tf.global_variables_initializer()
@@ -114,12 +114,17 @@ with tf.Session() as sess:
 #   sess.run(tf.global_variables_initializer()) #bat buoc phai co cau lenh khoi tao nay
     print("Mỗi lần chạy là giá trị của m được nhân 2:",sess.run(m))
     print("Mỗi lần chạy là giá trị của m1 được cộng 2:", sess.run(m1))
-=====Kết quả:
-Mỗi lần chạy là giá trị của m được nhân 2: [[ 64 128]
- [192 256]]
-Mỗi lần chạy là giá trị của m1 được cộng 2: [[10 11]
- [12 13]]
- ```
- Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Bây giờ vận dụng TF để thử một ví dụ cơ bản: Linear Regression
+```
 
- ## Linear Regression với Tensorflow
+Kết quả:
+
+```python
+Mỗi lần chạy là giá trị của m được nhân 2: [[ 64 128], [192 256]]
+Mỗi lần chạy là giá trị của m1 được cộng 2: [[10 11], [12 13]]
+```
+
+Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Trong hướng dẫn sử dụng của TF khuyên nên sử dụng high level API mỗi khi có thể, chỉ sử dụng low level API khi high level API không thể giải quyết được. Bây giờ vận dụng TF để thử một 
+ví dụ cơ bản: Linear Regression.
+## Linear Regression với Tensorflow
+Giới thiệu sơ lược về **Machine Learning**, trong nhiều giáo trình hoặc trên mạng Internet có thể dễ dàng tìm được định nghĩa ML là gì. Ở đây chấp nhận một định nghĩa của Wikipedia như sau *"Machine learning is the subfield of computer science that gives computers the ability to learn without being explicitly programmed"*. Dịch ra thành "ML là một ngành hẹp của khoa học máy tính cho phép máy tính có thể học (từ dữ liệu) mà không cần được lập trình cụ thể". Người ta có nhiều cách phân loại, cách phân loại rộng nhất là chia thành Supervised learning, unsupervised learning và reinforcement learning, Deep learning là một lĩnh vực hẹp của ML sử dụng kiến trúc mạng neuron nhiều lớp. Để làm rõ định nghĩa ở trên xét ví dụ sau:
+**Ví dụ:** Cho bảng số liệu như hình 2
