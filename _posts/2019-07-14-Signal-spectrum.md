@@ -80,7 +80,7 @@ $$
 
 $$
 \begin{equation}
-\labe{eq:3}
+\label{eq:3}
 X(e^{j\omega})=\frac{1}{T_s}\sum_{k=-\infty}^{+\infty}X_c(j(\frac{\omega}{T_s}-\frac{2\pi k}{T_s}))
 \end{equation}
 $$
