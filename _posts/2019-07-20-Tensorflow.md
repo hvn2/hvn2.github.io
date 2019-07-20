@@ -20,5 +20,5 @@ Trong phần đầu của bài viết này sẽ trình bày một số khái ni�
 ```
 Ví dụ: Grap như hình 1 trong TF sẽ thực hiện bằng các câu lệnh sau:
 
-<img src="./images/bai-03/tfgraph.PNG"
+<img src="/images/bai-03/tfgraph.PNG"
 align="middle">
