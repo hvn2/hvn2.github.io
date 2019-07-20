@@ -65,7 +65,7 @@ Hình 3. Biến đổi CFT của tín hiệu liên tục và tín hiệu lấy m
 
 Từ hình vẽ trên cũng suy ra được định lý lấy mẫu **Nyquist** nổi tiếng: Tần số lấy mẫu phải lớn hơn hoặc bằng 2 lần tần số lớn nhất của tín hiệu. Rõ ràng để khôi phục được tín hiệu tương tự từ các mẫu một cách chính xác nhất thì phổ lặp lại tại các tần số bằng số nguyên lần $\Omega_s$ không được xen lẫn vào nhau - như hình b, nếu không sẽ bị xen lẫn vào nhau và không khôi phục được - như hình c. Để thỏa mãn điều đó thì:
 
-$2\Omega_H \leqslant \Omega_s$
+$$2\Omega_H \leqslant \Omega_s$$
 
 Gọi $x[n]$ là dãy rời rạc từ dãy lấy mẫu $x[n]=x_c(nT_s)$, biến đổi Fourier thời gian rời rạc của $x[n]$ có dạng:
 
