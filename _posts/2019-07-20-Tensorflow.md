@@ -138,7 +138,7 @@ y = [49, 50, 51,  54, 58, 59, 60, 62, 63, 64, 66, 67, 68]
 Đồ thị của nó như hình 2
 
 <div class="imgcap">
- <img src ="/images/bai-03/linreg.PNG" align = "center">
+ <img src ="/images/bai-03/linreg.png" align = "center">
  <div class = "thecap">Hình 2. Đồ thị liên hệ x và y</div>
 </div>
 
