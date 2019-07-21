@@ -144,7 +144,7 @@ y = [49, 50, 51,  54, 58, 59, 60, 62, 63, 64, 66, 67, 68]
 
 Trước khi nói tới việc máy học thì người học ra sao? Dừng lại một chút, nếu bạn nhìn vào bảng số và đồ thị trên bạn sẽ "học" được điều gì? Đối với một người học hết cấp 2, trí tuệ bình thường, dễ thấy đó là mối quan hệ tuyến tính giữa cân nặng và chiều cao $y=ax+b$. Chỉ cần biết $a, b$ thì sẽ suy ra quy luật này, và bây giờ nếu có một giá trị chiều cao $x$ mới sẽ suy ra được cân nặng $y$ tương ứng. Tương tự như vậy, nếu đưa cho máy tính bảng số liệu trên rồi bằng cách nào đó máy tính cho ta biết dược giá trị của $a, b$ thì đó chính là học máy. Nếu so sánh với phương pháp không phải là ML thì chúng ta phải lập trình cụ thể, đó là con người tìm ra các con số $a, b$ trước, sau đó lập trình hàm số $y=ax+b$, dựa vào đây máy cho đầu ra $y$ tương ứng với $x$. Đây là một ví dụ đơn giản, gọi là hồi quy tuyến tính (Linear regression), có thể coi bài toán Hello World của ML. Thực tế ML phức tạp hơn nhiều, ví dụ đầu vào máy là bức ảnh, đầu ra máy phải cho biết trong bức ảnh đó con mèo hay không? đầu ra trong bức ảnh đó có mấy cái oto, nằm ở vị trí nào? đầu ra là một đoạn text mô tả nội dung bức ảnh đó.... Bất cứ từ dữ liệu (con số, hình ảnh, tiếng nói, video,...) mà con người nhìn vào đó có thể rút ra được thông tin gì mà máy cũng làm được điều tương tự thì đó có thể coi là ML. Làm thế nào máy có thể làm được điều kì diệu đó? Nó phải học. Vậy con người học như thế nào? Đó là phải được dạy lý thuyết, được thực hành qua các ví dụ, được kiểm tra, đánh giá (học chưa được thì phải học lại). Như ví dụ trên chẳng hạn, đầu tiên phải chỉ ra được đây là quy luật tuyến tính (lý thuyết), đưa các dữ liệu $x, y$ vào để tìm $a, b$ (thực hành) và phải có một tiêu chuẩn nào đó để kiểm tra xem $a, b$ tìm được đã tốt chưa? Máy học (ML) cũng như vậy.
 
-Quay trở lại ví dụ Linear Regression ở trên. Theo ngôn ngữ của ML thì hàm số tuyến tính bậc nhất $y=ax+b$ là mô hình (model), $a, b$ là các tham số của mô hình (parametes hoặc weights). Mô hình làm nhiệm vụ dự đoán (predict), đầu ra của nó thường được gọi là $y_{hat}$. Tiêu chuẩn đánh giá (trong ví dụ này) $y_{hat}$ có đúng với giá trị thực (giá trị đúng) hay không gọi là hàm mất mát (loss/cost function). Mục tiêu là phải làm cho sự sai lệch này càng nhỏ càng tốt (optimization).
+Quay trở lại ví dụ Linear Regression ở trên. Theo ngôn ngữ của ML thì hàm số tuyến tính bậc nhất $y=ax+b$ là mô hình (model), $a, b$ là các tham số của mô hình (parametes hoặc weights). Các cặp dữ liệu (x,y) là các lữ liệu mẫu (sample/example), dữ liệu mẫu chỉ dùng cho việc học (train). Mô hình làm nhiệm vụ dự đoán (predict), đầu ra của nó thường được gọi là $y_{hat}$. Nếu có một cặp (x,y) mới mà mô hình dự đoán ra $y_{hat}=ax+b$ và so sánh với giá trị thực $y$ xem có sai lệch nhiều không, thì dữ liệu đó gọi là dữ liệu kiểm tra (test). Tiêu chuẩn đánh giá (trong ví dụ này) $y_{hat}$ có đúng với giá trị thực (giá trị đúng) hay không gọi là hàm mất mát (loss/cost function). Mục tiêu là phải làm cho sự sai lệch này càng nhỏ càng tốt (optimization).
 
 Thường khi giải bài toán ML/DL cơ bản thực hiện các bước sau:
 - Chuẩn bị dữ liệu
@@ -155,7 +155,7 @@ Thường khi giải bài toán ML/DL cơ bản thực hiện các bước sau:
 - Ứng dụng
 
 Ví dụ Linear Regression như trên thực hiện trong TF như sau:
-```jupyter
+```python
 x_data = np.array([[147, 150, 153, 158, 163, 165, 168, 170, 173, 175, 178, 180, 183]], dtype=float)
 y_data = np.array([[49, 50, 51,  54, 58, 59, 60, 62, 63, 64, 66, 67, 68]],dtype = float)
 x_data = x_data.T/100
@@ -187,3 +187,5 @@ with tf.Session() as sess:
     print('training done!')
     print('w=',sess.run(w1),'b=',sess.run(b1))
 ```
+
+*Những bài tiếp theo sẽ trình bày TF cho các ứng dụng như classification với neural network hay convolutional neural network*
