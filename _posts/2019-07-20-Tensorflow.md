@@ -127,4 +127,63 @@ Mỗi lần chạy là giá trị của m1 được cộng 2: [[10 11], [12 13]]
 ví dụ cơ bản: Linear Regression.
 ## Linear Regression với Tensorflow
 Giới thiệu sơ lược về **Machine Learning**, trong nhiều giáo trình hoặc trên mạng Internet có thể dễ dàng tìm được định nghĩa ML là gì. Ở đây chấp nhận một định nghĩa của Wikipedia như sau *"Machine learning is the subfield of computer science that gives computers the ability to learn without being explicitly programmed"*. Dịch ra thành "ML là một ngành hẹp của khoa học máy tính cho phép máy tính có thể học (từ dữ liệu) mà không cần được lập trình cụ thể". Người ta có nhiều cách phân loại, cách phân loại rộng nhất là chia thành Supervised learning, unsupervised learning và reinforcement learning, Deep learning là một lĩnh vực hẹp của ML sử dụng kiến trúc mạng neuron nhiều lớp. Để làm rõ định nghĩa ở trên xét ví dụ sau:
-**Ví dụ:** Cho bảng số liệu như hình 2
+
+**Ví dụ:** Cho bảng số liệu chiều cao (x) và cân nặng (y):
+
+```
+x = [147, 150, 153, 158, 163, 165, 168, 170, 173, 175, 178, 180, 183]
+y = [49, 50, 51,  54, 58, 59, 60, 62, 63, 64, 66, 67, 68]
+```
+
+Đồ thị của nó như hình 2
+
+<div class="imgcap">
+ <img src ="/images/bai-03/linreg.PNG" align = "center">
+ <div class = "thecap">Hình 2. Đồ thị liên hệ x và y</div>
+</div>
+
+Trước khi nói tới việc máy học thì người học ra sao? Dừng lại một chút, nếu bạn nhìn vào bảng số và đồ thị trên bạn sẽ "học" được điều gì? Đối với một người học hết cấp 2, trí tuệ bình thường, dễ thấy đó là mối quan hệ tuyến tính giữa cân nặng và chiều cao $y=ax+b$. Chỉ cần biết $a, b$ thì sẽ suy ra quy luật này, và bây giờ nếu có một giá trị chiều cao $x$ mới sẽ suy ra được cân nặng $y$ tương ứng. Tương tự như vậy, nếu đưa cho máy tính bảng số liệu trên rồi bằng cách nào đó máy tính cho ta biết dược giá trị của $a, b$ thì đó chính là học máy. Nếu so sánh với phương pháp không phải là ML thì chúng ta phải lập trình cụ thể, đó là con người tìm ra các con số $a, b$ trước, sau đó lập trình hàm số $y=ax+b$, dựa vào đây máy cho đầu ra $y$ tương ứng với $x$. Đây là một ví dụ đơn giản, gọi là hồi quy tuyến tính (Linear regression), có thể coi bài toán Hello World của ML. Thực tế ML phức tạp hơn nhiều, ví dụ đầu vào máy là bức ảnh, đầu ra máy phải cho biết trong bức ảnh đó con mèo hay không? đầu ra trong bức ảnh đó có mấy cái oto, nằm ở vị trí nào? đầu ra là một đoạn text mô tả nội dung bức ảnh đó.... Bất cứ từ dữ liệu (con số, hình ảnh, tiếng nói, video,...) mà con người nhìn vào đó có thể rút ra được thông tin gì mà máy cũng làm được điều tương tự thì đó có thể coi là ML. Làm thế nào máy có thể làm được điều kì diệu đó? Nó phải học. Vậy con người học như thế nào? Đó là phải được dạy lý thuyết, được thực hành qua các ví dụ, được kiểm tra, đánh giá (học chưa được thì phải học lại). Như ví dụ trên chẳng hạn, đầu tiên phải chỉ ra được đây là quy luật tuyến tính (lý thuyết), đưa các dữ liệu $x, y$ vào để tìm $a, b$ (thực hành) và phải có một tiêu chuẩn nào đó để kiểm tra xem $a, b$ tìm được đã tốt chưa? Máy học (ML) cũng như vậy.
+
+Quay trở lại ví dụ Linear Regression ở trên. Theo ngôn ngữ của ML thì hàm số tuyến tính bậc nhất $y=ax+b$ là mô hình (model), $a, b$ là các tham số của mô hình (parametes hoặc weights). Mô hình làm nhiệm vụ dự đoán (predict), đầu ra của nó thường được gọi là $y_{hat}$. Tiêu chuẩn đánh giá (trong ví dụ này) $y_{hat}$ có đúng với giá trị thực (giá trị đúng) hay không gọi là hàm mất mát (loss/cost function). Mục tiêu là phải làm cho sự sai lệch này càng nhỏ càng tốt (optimization).
+
+Thường khi giải bài toán ML/DL cơ bản thực hiện các bước sau:
+- Chuẩn bị dữ liệu
+- Xây dựng mô hình
+- Xác định hàm mất mát và phương pháp tối ưu hóa
+- Training/Fitting mô hình với dữ liệu
+- Đánh giá mô hình
+- Ứng dụng
+
+Ví dụ Linear Regression như trên thực hiện trong TF như sau:
+```jupyter
+x_data = np.array([[147, 150, 153, 158, 163, 165, 168, 170, 173, 175, 178, 180, 183]], dtype=float)
+y_data = np.array([[49, 50, 51,  54, 58, 59, 60, 62, 63, 64, 66, 67, 68]],dtype = float)
+x_data = x_data.T/100
+y_data = y_data.T/100
+def init_weight(shape):
+    return tf.Variable(tf.random.normal(shape,stddev = 0.1))
+def model(_input,w1,b1):
+    return tf.add(tf.matmul(_input,w1), b1)
+iteration = 1000
+learning_rate = 0.01
+
+x = tf.placeholder(tf.float32, shape=(None,1))
+y = tf.placeholder(tf.float32, shape = (None,1))
+
+_input = x
+w1 = init_weight([1,1])
+b1 = tf.Variable([0.])
+y_pred = model(_input,w1,b1)
+loss_op = tf.reduce_mean(tf.square(y - y_pred))
+optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+train_op = optimizer.minimize(loss_op)
+
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())    
+    for epoch in range (iteration):
+        sess.run(train_op,feed_dict = {x:x_data,y:y_data})
+        if (epoch+1) % 100 == 0:
+            print('Epoch = ',epoch+1,'Training loss = ', sess.run(loss_op,feed_dict={x:x_data,y:y_data}))
+    print('training done!')
+    print('w=',sess.run(w1),'b=',sess.run(b1))
+```
