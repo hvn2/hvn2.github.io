@@ -195,13 +195,13 @@ Logistic Regression là bài toán cơ bản thứ 2 của ML/DL, đây là bài
   - Bộ dữ liệu MNIST, CIFAR10,..đầu vào là là ảnh các chữ số viết tay đen trắng (MNIST), hoặc các hình ảnh màu khác (CIFAR10), đầu ra là các các chữ số tương ứng với con số trong ảnh MNIST, hoặc các con số đại diện cho một lớp hình ảnh nào đó trong ảnh CIFAR10 (ví dụ số 6 là đại diện cho xe tải- truck)
 
 <div class="imgcap">
- <img src ="/images/bai-03/logis_reg.png" align = "center">
- <div class = "thecap">Ví dụ logistic với đầu ra 2 lớp</div>
+ <img src ="/images/bai-03/logis_reg.png" scale = 0.6>
+ <div class = "thecap">Hình 3. Ví dụ logistic với đầu ra 2 lớp</div>
 </div>
 
 <div class="imgcap">
- <img src ="/images/bai-03/Iris.png" align = "center">
- <div class = "thecap">Một phần bộ dữ liệu Iris</div>
+ <img src ="/images/bai-03/Iris.png" scale = 0.6>
+ <div class = "thecap">Hình 4. Một phần bộ dữ liệu Iris</div>
 </div>
 
 Trong hai ví đầu các feature vector (vecto $x$) hoàn toàn giống với bài toán Linear Regression, hai ví dụ sau có thể dùng phép biến đổi (ví dụ kéo dài ma trận thành vector) để biến thành feature vector như hai ví dụ đầu. Vậy nên có thể nghĩ đến cách giải tương tự như Linear Regression, tuy nhiên vì đầu ra là những con số tương đối nhỏ, trong khi đầu ra dự đoán theo Linear Regression $\widehat{y}=Wx+b$ lại có thể là một số rất lớn, hoặc cũng thể là số âm. Nếu sử dụng loss function là mean square error sẽ không hiệu quả vì nó có thể rất lớn nên khó tối ưu. Do vậy trong Logistic Regression cần sử dụng loss function hiệu quả hơn, hiệu quả theo hướng dễ tối ưu và dễ tính đạo hàm (để cập nhật Gradient Descent). Loss function được chọn là làm *sigmoid* đối với trường hợp chỉ có 2 lớp ở đầu ra, và *softmax* đối với trường hợp có nhiều hơn 2 lớp ở đầu ra (*softmax* là trường hợp tổng quát của *sigmoid*). Loss fuction này người ta gọi là *cross entropy*. Như vậy Logistic Regression hoàn toàn giống với Linear Regression ngoại trừ loss function.
