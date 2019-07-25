@@ -187,5 +187,23 @@ with tf.Session() as sess:
     print('training done!')
     print('w=',sess.run(w1),'b=',sess.run(b1))
 ```
+## Logistic Regression
+Logistic Regression là bài toán cơ bản thứ 2 của ML/DL, đây là bài toán mà đầu ra của mô hình (đầu ra dự đoán) là một tập hữu hạn các giá trị rời rạc. Nhiều khi người ta còn gọi đây là bài toán phân loại, vì mỗi giá trị rời rạc ở đầu ra có thể đại diện cho một lớp. Một số ví dụ Linear Regression
+  - Dữ liệu là số giờ ôn thi, số giờ có mặt trên lớp và kết quả đậu/rớt của một sinh viên. Như hình 3, ở đây giả sử đậu là 1, rớt là 0. Ví dụ này đầu ra có hai lớp, còn gọi là binary classification
+  - Bộ dữ liệu [Iris](https://en.wikipedia.org/wiki/Iris_flower_data_set) là bộ dữ liệu lâu đời cho ML. Dữ liệu gồm chiều dài cánh hoa, đài hoa,...của 3 loại hoa lan. Trong trường hợp này đầu ra là 3 lớp dữ liệu (hình 4).
+  - Dữ liệu là một bức ảnh chứa một trong 2 loại chó hoặc mèo. Dự đoán đầu ra là chó (1) hay mèo (0). Trường hợp này đầu vào là dữ liệu không có cấu trúc (unstructure data) - không phải là vector có số chiều cố định như hai ví dụ trên
+  - Bộ dữ liệu MNIST, CIFAR10,..đầu vào là là ảnh các chữ số viết tay đen trắng (MNIST), hoặc các hình ảnh màu khác (CIFAR10), đầu ra là các các chữ số tương ứng với con số trong ảnh MNIST, hoặc các con số đại diện cho một lớp hình ảnh nào đó trong ảnh CIFAR10 (ví dụ số 6 là đại diện cho xe tải- truck)
 
-*Những bài tiếp theo sẽ trình bày TF cho các ứng dụng như classification với neural network hay convolutional neural network*
+<div class="imgcap">
+ <img src ="/images/bai-03/logis_reg.png" align = "center">
+ <div class = "thecap">Ví dụ logistic với đầu ra 2 lớp</div>
+</div>
+
+<div class="imgcap">
+ <img src ="/images/bai-03/Iris.png" align = "center">
+ <div class = "thecap">Một phần bộ dữ liệu Iris</div>
+</div>
+
+Trong hai ví đầu các feature vector (vecto $x$) hoàn toàn giống với bài toán Linear Regression, hai ví dụ sau có thể dùng phép biến đổi (ví dụ kéo dài ma trận thành vector) để biến thành feature vector như hai ví dụ đầu. Vậy nên có thể nghĩ đến cách giải tương tự như Linear Regression, tuy nhiên vì đầu ra là những con số tương đối nhỏ, trong khi đầu ra dự đoán theo Linear Regression $\widehat{y}=Wx+b$ lại có thể là một số rất lớn, hoặc cũng thể là số âm. Nếu sử dụng loss function là mean square error sẽ không hiệu quả vì nó có thể rất lớn nên khó tối ưu. Do vậy trong Logistic Regression cần sử dụng loss function hiệu quả hơn, hiệu quả theo hướng dễ tối ưu và dễ tính đạo hàm (để cập nhật Gradient Descent). Loss function được chọn là làm *sigmoid* đối với trường hợp chỉ có 2 lớp ở đầu ra, và *softmax* đối với trường hợp có nhiều hơn 2 lớp ở đầu ra (*softmax* là trường hợp tổng quát của *sigmoid*). Loss fuction này người ta gọi là *cross entropy*. Như vậy Logistic Regression hoàn toàn giống với Linear Regression ngoại trừ loss function.
+
+ *Những bài tiếp theo sẽ trình bày TF cho các ứng dụng như classification với neural network hay convolutional neural network*
