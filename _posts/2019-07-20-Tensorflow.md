@@ -123,9 +123,9 @@ Mỗi lần chạy là giá trị của m được nhân 2: [[ 64 128], [192 256
 Mỗi lần chạy là giá trị của m1 được cộng 2: [[10 11], [12 13]]
 ```
 
-Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Trong hướng dẫn sử dụng của TF khuyên nên sử dụng high level API mỗi khi có thể, chỉ sử dụng low level API khi high level API không thể giải quyết được. Một trong những
-Bây giờ vận dụng TF để thử một 
-ví dụ cơ bản: Linear Regression.
+Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Trong hướng dẫn sử dụng của TF khuyên nên sử dụng high level API mỗi khi có thể, chỉ sử dụng low level API khi high level API không thể giải quyết được. Một trong những high level API được sử dụng rộng rãi của TF là [Keras](keras.io). Hiện nay Keras đã là một phần của TF, do vậy có thể sử dụng cả low level API và high level API trong TF hoàn toàn được (sẽ có các ví dụ sau).
+
+Phần tiếp theo sẽ trình bày 2 ví dụ cơ bản của ML với TL: Linear Regression và Logistic Regression.
 ## Linear Regression với Tensorflow
 Giới thiệu sơ lược về **Machine Learning**, trong nhiều giáo trình hoặc trên mạng Internet có thể dễ dàng tìm được định nghĩa ML là gì. Ở đây chấp nhận một định nghĩa của Wikipedia như sau *"Machine learning is the subfield of computer science that gives computers the ability to learn without being explicitly programmed"*. Dịch ra thành "ML là một ngành hẹp của khoa học máy tính cho phép máy tính có thể học (từ dữ liệu) mà không cần được lập trình cụ thể". Người ta có nhiều cách phân loại, cách phân loại rộng nhất là chia thành Supervised learning, unsupervised learning và reinforcement learning, Deep learning là một lĩnh vực hẹp của ML sử dụng kiến trúc mạng neuron nhiều lớp. Để làm rõ định nghĩa ở trên xét ví dụ sau:
 
