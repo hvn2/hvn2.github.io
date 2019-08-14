@@ -129,7 +129,7 @@ Phần tiếp theo sẽ trình bày 2 ví dụ cơ bản của ML với TL: Line
 ## Linear Regression với Tensorflow
 Giới thiệu sơ lược về **Machine Learning**, trong nhiều giáo trình hoặc trên mạng Internet có thể dễ dàng tìm được định nghĩa ML là gì. Ở đây chấp nhận một định nghĩa của Wikipedia như sau *"Machine learning is the subfield of computer science that gives computers the ability to learn without being explicitly programmed"*. Dịch ra thành "ML là một ngành hẹp của khoa học máy tính cho phép máy tính có thể học (từ dữ liệu) mà không cần được lập trình cụ thể". Người ta có nhiều cách phân loại, cách phân loại rộng nhất là chia thành Supervised learning, unsupervised learning và reinforcement learning, Deep learning là một lĩnh vực hẹp của ML sử dụng kiến trúc mạng neuron nhiều lớp. Để làm rõ định nghĩa ở trên xét ví dụ sau:
 
-**Ví dụ:** Cho bảng số liệu chiều cao (x) và cân nặng (y):
+**Ví dụ:** Cho bảng số liệu chiều cao (x-kg) và cân nặng (y-cm):
 
 ```
 x = [147, 150, 153, 158, 163, 165, 168, 170, 173, 175, 178, 180, 183]
@@ -189,9 +189,9 @@ with tf.Session() as sess:
     print('w=',sess.run(w1),'b=',sess.run(b1))
 ```
 ## Logistic Regression
-Logistic Regression là bài toán cơ bản thứ 2 của ML/DL, đây là bài toán mà đầu ra của mô hình (đầu ra dự đoán) là một tập hữu hạn các giá trị rời rạc. Nhiều khi người ta còn gọi đây là bài toán phân loại, vì mỗi giá trị rời rạc ở đầu ra có thể đại diện cho một lớp. Một số ví dụ Linear Regression
+Logistic Regression là bài toán cơ bản thứ 2 của ML/DL, đây là bài toán mà đầu ra của mô hình (đầu ra dự đoán) là một tập hữu hạn các giá trị rời rạc. Nhiều khi người ta còn gọi đây là bài toán phân loại, vì mỗi giá trị rời rạc ở đầu ra có thể đại diện cho một lớp. Một số ví dụ Linear Logistic Regression
   - Dữ liệu là số giờ ôn thi, số giờ có mặt trên lớp và kết quả đậu/rớt của một sinh viên. Như hình 3, ở đây giả sử đậu là 1, rớt là 0. Ví dụ này đầu ra có hai lớp, còn gọi là binary classification
-  - Bộ dữ liệu [Iris](https://en.wikipedia.org/wiki/Iris_flower_data_set) là bộ dữ liệu lâu đời cho ML. Dữ liệu gồm chiều dài cánh hoa, đài hoa,...của 3 loại hoa lan. Trong trường hợp này đầu ra là 3 lớp dữ liệu (hình 4).
+  - Bộ dữ liệu [Iris](https://en.wikipedia.org/wiki/Iris_flower_data_set) là bộ dữ liệu lâu đời cho ML. Dữ liệu gồm chiều dài và chiều rộng cánh hoa, đài hoa của 3 loại hoa lan. Trong trường hợp này đầu ra là 3 lớp dữ liệu - có thể mã hóa thành 0,1,2 (hình 4).
   - Dữ liệu là một bức ảnh chứa một trong 2 loại chó hoặc mèo. Dự đoán đầu ra là chó (1) hay mèo (0). Trường hợp này đầu vào là dữ liệu không có cấu trúc (unstructure data) - không phải là vector có số chiều cố định như hai ví dụ trên
   - Bộ dữ liệu MNIST, CIFAR10,..đầu vào là là ảnh các chữ số viết tay đen trắng (MNIST), hoặc các hình ảnh màu khác (CIFAR10), đầu ra là các các chữ số tương ứng với con số trong ảnh MNIST, hoặc các con số đại diện cho một lớp hình ảnh nào đó trong ảnh CIFAR10 (ví dụ số 6 là đại diện cho xe tải- truck)
 
@@ -207,7 +207,7 @@ Logistic Regression là bài toán cơ bản thứ 2 của ML/DL, đây là bài
 
 Trong hai ví đầu các feature vector (vecto $x$) hoàn toàn giống với bài toán Linear Regression, hai ví dụ sau có thể dùng phép biến đổi (ví dụ kéo dài ma trận thành vector) để biến thành feature vector như hai ví dụ đầu. Vậy nên có thể nghĩ đến cách giải tương tự như Linear Regression, tuy nhiên vì đầu ra là những con số tương đối nhỏ, trong khi đầu ra dự đoán theo Linear Regression $\widehat{y}=Wx+b$ lại có thể là một số rất lớn, hoặc cũng thể là số âm. Mặt khác hàm tuyến tính rất nhạy cảm với nhiễu, chỉ một giá trị training vượt ra khỏi phân phối sẽ ảnh hưởng rất nhiều đến kết quả. Do vậy trong logistic regression người ta sử dụng một hàm dự đoán khác đó là hàm *sigmoid* hoặc *softmax* (*sigmoid* là trường hợp riêng của *softmax* khi chỉ có 2 lớp). Đầu ra của *softmax* là xác suất để output đó thuộc về lớp tương ứng, xác suất này càng gần 1 nghĩa là dự đoán càng chính xác. Tương ứng như vậy loss function không còn là mean square error (MSE) nữa, thay vào đó là một hàm đo lường sự giống nhau giữa hai phân phối đơn vị (dự đoán và nhãn). Loss function đó gọi là *categorical cross entropy* trong trường hợp nhãn được mã hóa về dạng *one hot*, còn không, nhãn vẫn ở dạng các con số rời rạc thì gọi là *sparse categorical cross entropy*. Như vậy Logistic Regression giống với Linear Regression ngoại trừ loss function (và predicted output).
 
-Ví dụ dưới đây là một mô hình Linear Logistic Regression để phân loại bộ dữ liệu Iris. Trong ví dụ có sử dụng một số câu lệnh trong thư viện sci-kit learn để tiền xử lý dữ liệu đưa về dạng tiêu chuẩn (còn gọi là feature matrix) với feature là một vecto hàng có 4 phần tử (X) và nhãn (label) mã hóa dưới dạng one-hot (Y). Bộ dữ liệu có 150 mẫu được chia thành dữ liệu traing và testing với tỷ lệ 75%, 25%.
+Ví dụ dưới đây là một mô hình Linear Logistic Regression để phân loại bộ dữ liệu Iris. Trong ví dụ có sử dụng một số câu lệnh trong thư viện [scikit-learn](https://scikit-learn.org/) để tiền xử lý dữ liệu đưa về dạng tiêu chuẩn (còn gọi là feature matrix) với feature matrix là một ma trận có các hàng là vecto có 4 phần tử (X) tương ứng với chiều dài, rộng của đài hoa, cánh hoa và nhãn (label) mã hóa dưới dạng one-hot (Y) tương ứng feature vector đó thuộc loại hoa (hớp) nào. Bộ dữ liệu có 150 mẫu được chia thành dữ liệu traing và testing với tỷ lệ 75%, 25%.
 ```python
 import tensorflow as tf
 print(tf.__version__)
