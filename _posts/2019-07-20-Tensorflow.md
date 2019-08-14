@@ -123,7 +123,8 @@ Mỗi lần chạy là giá trị của m được nhân 2: [[ 64 128], [192 256
 Mỗi lần chạy là giá trị của m1 được cộng 2: [[10 11], [12 13]]
 ```
 
-Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Trong hướng dẫn sử dụng của TF khuyên nên sử dụng high level API mỗi khi có thể, chỉ sử dụng low level API khi high level API không thể giải quyết được. Bây giờ vận dụng TF để thử một 
+Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Trong hướng dẫn sử dụng của TF khuyên nên sử dụng high level API mỗi khi có thể, chỉ sử dụng low level API khi high level API không thể giải quyết được. Một trong những
+Bây giờ vận dụng TF để thử một 
 ví dụ cơ bản: Linear Regression.
 ## Linear Regression với Tensorflow
 Giới thiệu sơ lược về **Machine Learning**, trong nhiều giáo trình hoặc trên mạng Internet có thể dễ dàng tìm được định nghĩa ML là gì. Ở đây chấp nhận một định nghĩa của Wikipedia như sau *"Machine learning is the subfield of computer science that gives computers the ability to learn without being explicitly programmed"*. Dịch ra thành "ML là một ngành hẹp của khoa học máy tính cho phép máy tính có thể học (từ dữ liệu) mà không cần được lập trình cụ thể". Người ta có nhiều cách phân loại, cách phân loại rộng nhất là chia thành Supervised learning, unsupervised learning và reinforcement learning, Deep learning là một lĩnh vực hẹp của ML sử dụng kiến trúc mạng neuron nhiều lớp. Để làm rõ định nghĩa ở trên xét ví dụ sau:
@@ -206,4 +207,74 @@ Logistic Regression là bài toán cơ bản thứ 2 của ML/DL, đây là bài
 
 Trong hai ví đầu các feature vector (vecto $x$) hoàn toàn giống với bài toán Linear Regression, hai ví dụ sau có thể dùng phép biến đổi (ví dụ kéo dài ma trận thành vector) để biến thành feature vector như hai ví dụ đầu. Vậy nên có thể nghĩ đến cách giải tương tự như Linear Regression, tuy nhiên vì đầu ra là những con số tương đối nhỏ, trong khi đầu ra dự đoán theo Linear Regression $\widehat{y}=Wx+b$ lại có thể là một số rất lớn, hoặc cũng thể là số âm. Mặt khác hàm tuyến tính rất nhạy cảm với nhiễu, chỉ một giá trị training vượt ra khỏi phân phối sẽ ảnh hưởng rất nhiều đến kết quả. Do vậy trong logistic regression người ta sử dụng một hàm dự đoán khác đó là hàm *sigmoid* hoặc *softmax* (*sigmoid* là trường hợp riêng của *softmax* khi chỉ có 2 lớp). Đầu ra của *softmax* là xác suất để output đó thuộc về lớp tương ứng, xác suất này càng gần 1 nghĩa là dự đoán càng chính xác. Tương ứng như vậy loss function không còn là mean square error (MSE) nữa, thay vào đó là một hàm đo lường sự giống nhau giữa hai phân phối đơn vị (dự đoán và nhãn). Loss function đó gọi là *categorical cross entropy* trong trường hợp nhãn được mã hóa về dạng *one hot*, còn không, nhãn vẫn ở dạng các con số rời rạc thì gọi là *sparse categorical cross entropy*. Như vậy Logistic Regression giống với Linear Regression ngoại trừ loss function (và predicted output).
 
- *Những bài tiếp theo sẽ trình bày TF cho các ứng dụng như classification với neural network hay convolutional neural network*
+Ví dụ dưới đây là một mô hình Linear Logistic Regression để phân loại bộ dữ liệu Iris. Trong ví dụ có sử dụng một số câu lệnh trong thư viện sci-kit learn để tiền xử lý dữ liệu đưa về dạng tiêu chuẩn (còn gọi là feature matrix) với feature là một vecto hàng có 4 phần tử (X) và nhãn (label) mã hóa dưới dạng one-hot (Y). Bộ dữ liệu có 150 mẫu được chia thành dữ liệu traing và testing với tỷ lệ 75%, 25%.
+```python
+import tensorflow as tf
+print(tf.__version__)
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+import numpy as np
+from sklearn.preprocessing import OneHotEncoder
+
+iris = datasets.load_iris()
+X = iris['data']
+y = iris['target']
+y = np.expand_dims(y,axis =1)
+onehot_encoder = OneHotEncoder(sparse=False)
+Y = onehot_encoder.fit_transform(y)
+X_tr,X_ts,Y_tr,Y_ts = train_test_split(X,Y,test_size = 0.25,random_state = 42)
+print(X_ts.shape)
+# Tạo ra x chứa dữ liệu, W chứa tham số mô hình, ở đây chỉ là 1 ma trận
+x=tf.placeholder(tf.float32,[None,4])
+# print(x)
+W=tf.Variable(tf.random.normal([4,3],stddev = 0.1))
+b= tf.Variable([0.])
+# y_true là nhãn, y_pred là dự đoán(đầu ra)
+y_true=tf.placeholder(tf.float32,[None,3])
+y_pred= tf.add(tf.matmul(x,W),b)
+# Loss fucntion
+cross_entropy=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y_pred,labels=y_true))
+# Optimizer
+gd_step=tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+#metric
+correct_mask=tf.equal(tf.argmax(y_pred,1),tf.argmax(y_true,1))
+accuracy=tf.math.reduce_mean(tf.cast(correct_mask,tf.float32))
+NUM_STEPS = 1000
+#train and run
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer()) #bắt buộc phải chạy đoạn code này để chạy các biến
+    for iteration in range(NUM_STEPS):
+        sess.run(gd_step,feed_dict={x: X_tr,y_true:Y_tr})
+        if iteration%50 == 0:
+            train_acc = sess.run(accuracy,feed_dict={x: X_tr,y_true: Y_tr})
+            print('Iteration:',iteration,' training accuracy:{:.4}% '.format(train_acc*100))
+
+    ans=sess.run(accuracy,feed_dict={x:X_ts,y_true:Y_ts})
+print ("Training done!\n Test accuracy: {:.4}%".format(ans*100))
+```
+Kết quả:
+```
+Iteration: 0  training accuracy:33.93% 
+Iteration: 50  training accuracy:65.18% 
+Iteration: 100  training accuracy:71.43% 
+Iteration: 150  training accuracy:87.5% 
+Iteration: 200  training accuracy:72.32% 
+Iteration: 250  training accuracy:95.54% 
+Iteration: 300  training accuracy:96.43% 
+Iteration: 350  training accuracy:96.43% 
+Iteration: 400  training accuracy:96.43% 
+Iteration: 450  training accuracy:96.43% 
+Iteration: 500  training accuracy:96.43% 
+Iteration: 550  training accuracy:96.43% 
+Iteration: 600  training accuracy:96.43% 
+Iteration: 650  training accuracy:96.43% 
+Iteration: 700  training accuracy:97.32% 
+Iteration: 750  training accuracy:96.43% 
+Iteration: 800  training accuracy:96.43% 
+Iteration: 850  training accuracy:96.43% 
+Iteration: 900  training accuracy:97.32% 
+Iteration: 950  training accuracy:97.32% 
+Training done!
+ Test accuracy: 97.37%
+```
+Bài này đã trình bày một số khái niệm cơ bản về TF và hai ví dụ cơ bản nhất của ML với TF (Linear Regression và Logistic Regression). Thực tế khi sử dụng TF ở mức trừu tượng thấp khá bất tiện mặc dùng có thể hiểu tương đối kỹ về cách thức hoạt động của TF, khi thực hiện các bài toán phức tạp hơn người ta thường sử dụng các thư viện (framework) ở mức trừu tượng cao hơn như Keras (với backend - nền tảng là TF) sẽ giúp cho việc thực hiện ngắn gọn và dễ hiểu hơn rất nhiều. Những bài tiếp theo sẽ trình bày Keras và ứng dụng trong ML/DL.
