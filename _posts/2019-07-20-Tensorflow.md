@@ -123,7 +123,7 @@ Mỗi lần chạy là giá trị của m được nhân 2: [[ 64 128], [192 256
 Mỗi lần chạy là giá trị của m1 được cộng 2: [[10 11], [12 13]]
 ```
 
-Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Trong hướng dẫn sử dụng của TF khuyên nên sử dụng high level API mỗi khi có thể, chỉ sử dụng low level API khi high level API không thể giải quyết được. Một trong những high level API được sử dụng rộng rãi của TF là [Keras](keras.io). Hiện nay Keras đã là một phần của TF, do vậy có thể sử dụng cả low level API và high level API trong TF hoàn toàn được (sẽ có các ví dụ sau).
+Đây là những khái niệm cơ bản nhất của TF, ngoài ra TF còn hỗ trợ nhiều lớp, đối tượng, hàm,...ở mức trừu tượng cao hơn. Trong hướng dẫn sử dụng của TF khuyên nên sử dụng high level API mỗi khi có thể, chỉ sử dụng low level API khi high level API không thể giải quyết được. Một trong những high level API được sử dụng rộng rãi của TF là [Keras](https://keras.io). Hiện nay Keras đã là một phần của TF, do vậy có thể sử dụng cả low level API và high level API trong TF hoàn toàn được (sẽ có các ví dụ sau).
 
 Phần tiếp theo sẽ trình bày 2 ví dụ cơ bản của ML với TL: Linear Regression và Logistic Regression.
 ## Linear Regression với Tensorflow
