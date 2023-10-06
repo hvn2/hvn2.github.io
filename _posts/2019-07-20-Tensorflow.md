@@ -153,7 +153,7 @@ Cuối cùng sau training và valiation đã tìm được giá trị tối ưu 
 
 Thường khi giải bài toán ML/DL cơ bản thực hiện các bước sau:
 - Chuẩn bị dữ liệu: training, validation, testing sets.
-- Xây dựng mô hình
+- Xây dựng mô hình: neural network
 - Xác định hàm mất mát và phương pháp tối ưu hóa
 - Training/Fitting mô hình với dữ liệu
 - Đánh giá mô hình
