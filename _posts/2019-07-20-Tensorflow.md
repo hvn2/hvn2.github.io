@@ -2,7 +2,7 @@
 layout: default
 title: CƠ BẢN VỀ TENSORFLOW
 ---
-#### Update: Bài viết này phù hợp với TF 1.xx; gần đây TF 2.xx đã có nhiều đổi mới giúp việc khai báo cú pháp đơn giản hơn rất nhiều. TF 2.xx có cú pháp và cách hoạt động rất giống với Pytorch, một DL framework rất phổ biến khác trong DL và sẽ được giơi thiệu ở các bài viết sau.
+#### <span style="color:red">Update:</span> Bài viết này phù hợp với TF 1.xx; gần đây TF 2.xx đã có nhiều đổi mới giúp việc khai báo cú pháp đơn giản hơn rất nhiều. TF 2.xx có cú pháp và cách hoạt động rất giống với Pytorch, một DL framework rất phổ biến khác trong DL và sẽ được giơi thiệu ở các bài viết sau.
 Tensorflow (TF) là một thư viện mã nguồn mở phát triển bởi Google hoạt động trên nền tảng nhiều ngôn ngữ lập trình, đặc biệt thích hợp cho Machine Learning (ML) và Deep Learning (DL). Trong các ứng dụng ML/DL chủ yếu sử dụng TF với ngôn ngữ Python. TF cung cấp nhiều lớp, module và hàm ở những mức độ trừu tượng khác nhau hỗ trợ cho ML/DL, do vậy phát triển ML/DL trên TF sẽ rất nhanh chóng.
 
 Trong phần đầu của bài viết này sẽ trình bày một số khái niệm cơ bản của TF ở mức độ trừu tượng thấp (Low level API). Để chạy một chương trình (tính toán) trong TF cần phải xây dựng một tf.Graph (luồng dữ liệu) thực hiện tf.Session (chạy luồng dữ liệu đó). Hai khái niệm này giúp cho TF có thể thực hiện một cách nhanh chóng thông qua tính toán phân tán (thực ra cũng chẳng cần quan tâm làm gì).
